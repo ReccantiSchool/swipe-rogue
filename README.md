@@ -24,6 +24,7 @@
     <a href="#6.3">6.3 - Effects</a>
 <a href="#7">7 - Team</a>
 	<a href="#7.1">7.1 - Members</a>
+	<a href="#7.2">7.2 - Roles</a>
 <a href="#8">8 - Additional</a>
 </pre>
 
@@ -126,7 +127,19 @@ Enemies in the maze will scale in proportion to the floor. The user will have to
 <div id="7.1"></div>
 ### Members
 
-- 
+- Zachary Wilken
+- Sharlene Mendez
+- Ben Wilcox
+
+<div id="7.2"></div>
+### Roles
+
+- **Creative Director:** **Ben Wilcox**
+- **Game Designer:** **Zachary Wilken**, Sharlene Mendez
+- **Producer:** **Sharlene Mendez**
+- **Game Programmer:** **Ben Wilcox**, Zachary Wilken
+- **Audio Engineer:** **Sharlene Mendez**
+- **Art/Animation:** **Sharlene Mendez**
 
 <div id="8"></div>
 ## Additional
