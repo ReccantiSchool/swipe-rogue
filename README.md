@@ -23,12 +23,9 @@
     <a href="#6.2">6.2 - Effects</a>
 <a href="#7">7 - Team</a>
 	<a href="#7.1">7.1 - Members</a>
-<<<<<<< HEAD
-<a href="#8">8 - Stretch Goals</a>
-=======
 	<a href="#7.2">7.2 - Roles</a>
-<a href="#8">8 - Additional</a>
->>>>>>> origin/master
+<a href="#8">8 - Stretch Goals</a>
+
 </pre>
 
 <div id="1"></div>
@@ -151,18 +148,6 @@ Our Team is made up of three people. While our group roles on paper are clearly 
 <div id="7.1"></div>
 ### Members
 
-<<<<<<< HEAD
-- **Ben Wilcox** Creative Director, Programmmer
-- **Zachary Wilken:** Level Editor, Game Designer, Programmer
-- **Sharlene Mendez:** Producer, Game Designer, Artist, Audio Engineer 
-
-<div id="8"></div>
-## Stretch Goals
-
-- Different Playable Characters
-- **Boss Floors:** Have a floor that only has one room and one monster. This monster would require you to swipe in different patterns to defeat it. 
-- At the moment the plan is to use freely available creative commons sounds and music. However if we have time, we hope to create our own custom sounds and music for the game.
-=======
 - Zachary Wilken
 - Sharlene Mendez
 - Ben Wilcox
@@ -178,5 +163,8 @@ Our Team is made up of three people. While our group roles on paper are clearly 
 - **Art/Animation:** **Sharlene Mendez**
 
 <div id="8"></div>
-## Additional
->>>>>>> origin/master
+## Stretch Goals
+
+- Different Playable Characters
+- **Boss Floors:** Have a floor that only has one room and one monster. This monster would require you to swipe in different patterns to defeat it. 
+- At the moment the plan is to use freely available creative commons sounds and music. However if we have time, we hope to create our own custom sounds and music for the game.
