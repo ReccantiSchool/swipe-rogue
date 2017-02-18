@@ -16,15 +16,14 @@
 <a href="#4">4 - Development</a>
     <a href="#4.1">4.1 - Code</a>
 <a href="#5">5 - Graphics</a>
-    <a href="#5.1">5.1 - Style</a>
-    <a href="#5.2">5.2 - Art</a>
+    <a href="#5.1">5.1 - Art</a>
+    <a href="#5.2">5.2 - Assets</a>
 <a href="#6">6 - Sounds/Music</a>
-    <a href="#6.1">6.1 - Style</a>
-    <a href="#6.2">6.2 - Music</a>
-    <a href="#6.3">6.3 - Effects</a>
+    <a href="#6.1">6.1 - Music</a>
+    <a href="#6.2">6.2 - Effects</a>
 <a href="#7">7 - Team</a>
 	<a href="#7.1">7.1 - Members</a>
-<a href="#8">8 - Additional</a>
+<a href="#8">8 - Stretch Goals</a>
 </pre>
 
 <div id="1"></div>
@@ -34,7 +33,7 @@
 ### Summary
 
 Swipe Rogue is a simple game in which the player navigates a randomly-generated dungeon. The player fights enemies and collects powerups in an attempt to get as far down the dungeon as they can.
-
+- Light Hearted easy going game
 
 <div id="1.2"></div>
 ### Inspiration
@@ -67,6 +66,8 @@ I really enjoy simple mobile games like Threes and Jetpack Joyride. These games 
 
 - **Moving Between Rooms:** The player can move to a room with an open door by swiping in the direction of that door
 - **Picking up an powerup:** The player can pick up an powerup by tapping on it. This will automatically apply the powerup. Powerups include: **Health Restore, Health Increase, and Strength Increase**
+- **Combat:** The enemies have attack timers and will launch an unavoidable attack when the timer runs out. The player must swipe repeatedly at the enemies to kill them before their attacks kill the player. 
+- **Timer:** Each floor has a timer, if the player doesn't leave the floor before the timer runs out then the player dies. 
 
 <div id="3"></div>
 ## Level Design
@@ -74,7 +75,10 @@ I really enjoy simple mobile games like Threes and Jetpack Joyride. These games 
 <div id="3.1"></div>
 ### Levels/Themes
 
-- **Maze:** The Maze is the only type of level in the game and has a similar look for each floor. 
+- **Maze:** The Maze is floor of randomly-generated rooms within the level.  
+- **Puzzles:** Each room will have some sort of small effect or challenge to keep the player engaged in the action of the game. 
+- **Healing Rooms:** There will be a room that has a possibility of appearing on each floor. This room contains the fountain of youth and drinking from it restores the players health. However the spring can only be used once per floor. 
+- **Treasure Rooms:** Rooms containing chests that have gold in them. This loot can be used to purchase more characters or weapons
 
 <div id="3.2"></div>
 ### Flow
@@ -85,48 +89,70 @@ Enemies in the maze will scale in proportion to the floor. The user will have to
 ## Development
 
 <div id="4.1"></div>
+### Process
+Our Development Process Started with a paper prototype. We had the player pick up a room card and a room effect card. The room cards had specific paths and the room effects varied from adding/removing time to having to play a quick game. 
+We found that the variation in the rooms and the timer made for fun gameplay.
+
+<div id="4.2"></div>
 ### Code
 
-- 
+-**Unity 5:** Our game is being produced in the Unity game engine for mobile. 
+-**Code Structure:** Our code follows a hierachical structure. Most sub-classes will be inhieriting from 3 Parent classes: Item (anything the player can interact with), Character (Any character in the game, player or otheriwse) and Room(different room types).
 
 <div id="5"></div>
 ## Graphics
 
 <div id="5.1"></div>
-### Style
-
-- **Simple**
-
-<div id="5.2"></div>
 ### Art
 
-- 
+- 2D pixel art
+- Aztec/Mayan inspired. 
+- 16th century Conquistadors
+
+<div id="5.2"></div>
+## Assets
+
+- Door (Open and Locked) x 8
+- Rooms x 3 (Walls and floors)
+- Player 
+- Monster 
+- Treasure Box
+- Spring
+- Gold
+- Weapons x 3
+- Stairs
 
 <div id="6"></div>
 ## Sounds/Music
 
 <div id="6.1"></div>
-### Style
-
-- The music in this game will either be very simple, or there will not be any. A lot of mobile games are played silently.
-
-<div id="6.2"></div>
 ### Music
 
-- 
+- Latin American/Spanish 
+- Flamenco Music
 
-<div id="6.3"></div>
+
+<div id="6.2"></div>
 ### Effects
 
 - There will be simple sound effects for basic actions, like **attacking, picking up an item, or moving to another floor**
 
+
 <div id="7"></div>
 ## Team
+
+Our Team is made up of three people. While our group roles on paper are clearly defined, we tend to overlap the roles often.
 
 <div id="7.1"></div>
 ### Members
 
-- 
+- **Ben Wilcox** Creative Director, Programmmer
+- **Zachary Wilken:** Level Editor, Game Designer, Programmer
+- **Sharlene Mendez:** Producer, Game Designer, Artist, Audio Engineer 
 
 <div id="8"></div>
-## Additional
+## Stretch Goals
+
+- Different Playable Characters
+- **Boss Floors:** Have a floor that only has one room and one monster. This monster would require you to swipe in different patterns to defeat it. 
+- At the moment the plan is to use freely available creative commons sounds and music. However if we have time, we hope to create our own custom sounds and music for the game.
