@@ -79,6 +79,9 @@ public class GameManager : MonoBehaviour {
 			Debug.Log (inputDownPosition);
 			inputDownPosition.z = 0;
 			Debug.DrawLine (inputDownPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition), Color.red);
+//			Vector3 moveTo = Vector3.MoveTowards (inputDownPosition, Camera.main.ScreenToWorldPoint (Input.mousePosition), 10f);
+//			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Camera.main.transform.position += new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"), 0f);
 		} else {
 			isDragging = false;
 		}
