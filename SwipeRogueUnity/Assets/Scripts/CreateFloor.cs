@@ -7,7 +7,7 @@ using UnityEngine;
  * An enum of the different directions that the
  * user can access
  */
-enum Direction {
+public enum Direction {
 	North,
 	South,
 	East,
@@ -33,6 +33,39 @@ public class RoomClass {
 		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
 			this.neighbors.Add(direction, null);
 		}
+	}
+
+	/**
+	 * Check to see if the room has a free edge
+	 */
+	public bool HasFreeEdges() {
+		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+			if (this.neighbors [direction] != null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get a random direction that doesn't have a room next to it
+	 */
+	public Direction getRandomFreeDirection() {
+
+		// create a list of directions, and randomly remove values from it
+		// until we find a neighbor in the direction that is unoccupied
+		Direction[] directions = (Direction[])Direction.GetValues(typeof(Direction));
+		List<Direction> directionList = new List<Direction> (directions);
+		while (directionList.Count > 1) {
+			int randomIndex = Random.Range (0, directionList.Count);
+			if (this.neighbors [directionList[randomIndex]] == null) {
+				return directionList [randomIndex];
+			} else {
+				directionList.RemoveAt(randomIndex);
+			}
+		}
+//		List<Direction> directionList = new List<Direction> (Direction.GetValues (typeof(Direction)));
+		return directionList[0];
 	}
 
 	/**
@@ -68,13 +101,16 @@ public class CreateFloor : MonoBehaviour {
 //
 //    
 //
+
+	private List<RoomClass> rooms;
+
     // Use this for initialization
     private void Start () {
-
+		rooms = new List<RoomClass> ();
 		RoomClass r = new RoomClass (1, null);
-		Debug.Log(r.ToString ());
-
-
+		for (int i = 0; i < 10; i++) {
+			Debug.Log(r.getRandomFreeDirection());
+		}
 	}
 //		
 //    // Each Room is created with open slots for adjacent rooms before they are added in
