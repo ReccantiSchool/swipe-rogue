@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	public FloorManager floorScript;
 
 	private Vector3 inputDownPosition;
+	private Vector3 inputDownPositionWorld;
+
 	private bool isDragging = false;
 	private bool shouldBeListening = true;
 
@@ -33,76 +35,44 @@ public class GameManager : MonoBehaviour {
 		// get the direction the player wants to move
 		float horizontal = Input.GetAxisRaw ("Horizontal");
 		float vertical = Input.GetAxisRaw ("Vertical");
-//		if (Input.GetKeyUp("left")) {
-//			print (floorScript.CanMoveWest ());
-//			if (floorScript.CanMoveWest ()) {
-//				floorScript.MoveWest ();
-//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-//				print (newPosition);
-////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-//			}
-//		}
-//		else if (Input.GetKeyUp("right")) {
-//			print (floorScript.CanMoveEast ());
-//			if (floorScript.CanMoveEast ()) {
-//				floorScript.MoveEast ();
-//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-//				print (newPosition);
-////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-//			}
-//		}
-//		else if (Input.GetKeyUp("down")) {
-//			print (floorScript.CanMoveSouth ());
-//			if (floorScript.CanMoveSouth ()) {
-//				floorScript.MoveSouth ();
-//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-//				print (newPosition);
-////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-//			}
-//		}
-//		else if (Input.GetKeyUp("up")) {
-//			print (floorScript.CanMoveNorth ());
-//			if (floorScript.CanMoveNorth ()) {
-//				floorScript.MoveNorth ();
-//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-//				print (newPosition);
-////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-//			}
-//		}
-
-//		Camera.main.transform.Translate (new Vector3 (horizontal, vertical, 0.0f));
-
 		Vector3 currentPosition = Camera.main.transform.position;
+
 		if (Input.GetKey (KeyCode.Mouse0) && shouldBeListening) {
-			if (!isDragging)
-			{
+			if (!isDragging) {
 				isDragging = true;
-				inputDownPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				//inputDownPosition = Input.mousePosition;
+				inputDownPosition = Input.mousePosition;
+				inputDownPositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			}
 			inputDownPosition.z = 0;
-			
-			// get y vector
-			Vector3 yVector = new Vector3(inputDownPosition.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-			Debug.DrawLine(inputDownPosition, yVector, Color.blue);
+			inputDownPositionWorld.z = 0;
 
-			// get x vector
-			Vector3 xVector = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, inputDownPosition.y, 0);
-			Debug.DrawLine(inputDownPosition, xVector, Color.cyan);
+			// get the mouse vector in world coordinates
+			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mouseWorld.z = 0;
 
 			// draw the moved vector
 			Color validColor = Color.red;
-			Vector3 movedVector = inputDownPosition - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			if (movedVector.sqrMagnitude > 115.0)
+			Vector3 movedVector = inputDownPositionWorld - mouseWorld;
+			if (movedVector.sqrMagnitude > 20.0)
 			{
 				validColor = Color.green;
 			}
-			Debug.DrawLine(inputDownPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition), validColor);
+			Debug.DrawLine(inputDownPositionWorld, mouseWorld, validColor);
+
+			// get y vector
+			Vector3 yVector = new Vector3(inputDownPositionWorld.x, mouseWorld.y, 0);
+			Debug.DrawLine(inputDownPositionWorld, yVector, Color.blue);
+
+			// get x vector
+			Vector3 xVector = new Vector3(mouseWorld.x, inputDownPositionWorld.y, 0);
+			Debug.DrawLine(inputDownPositionWorld, xVector, Color.cyan);
 
 			// move based on the dragging
-			if (xVector.sqrMagnitude > yVector.sqrMagnitude && movedVector.sqrMagnitude > 115.0) {
-				if ((inputDownPosition.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x) < 0)
+			// if ((xVector.sqrMagnitude > yVector.sqrMagnitude) && movedVector.sqrMagnitude > 20.0) {
+			if (Mathf.Abs(movedVector.x) > Mathf.Abs(movedVector.y) && movedVector.sqrMagnitude > 20.0) {
+				if (xVector.x - inputDownPositionWorld.x > 0)
 				{
+					Debug.Log("West");					
 					if (floorScript.CanMoveWest())
 					{
 						floorScript.MoveWest();
@@ -110,65 +80,40 @@ public class GameManager : MonoBehaviour {
 				}
 				else
 				{
+					Debug.Log("East");					
 					if (floorScript.CanMoveEast())
 					{
 						floorScript.MoveEast();
 					}
 				}
 				shouldBeListening = false;
-			} else if (xVector.sqrMagnitude < yVector.sqrMagnitude && movedVector.sqrMagnitude > 115.0)
-			{
-				if ((inputDownPosition.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y) < 0)
-				{
-					if (floorScript.CanMoveSouth())
-					{
+			} 
+			// else if ((xVector.sqrMagnitude < yVector.sqrMagnitude) && movedVector.sqrMagnitude > 20.0) {
+			else if (Mathf.Abs(movedVector.x) < Mathf.Abs(movedVector.y) && movedVector.sqrMagnitude > 20.0) {
+				if (yVector.y - inputDownPositionWorld.y > 0) {
+					Debug.Log("South");					
+					if (floorScript.CanMoveSouth()) {
 						floorScript.MoveSouth();
 					}
 				}
-				else
-				{
-					if (floorScript.CanMoveNorth())
-					{
+				else {
+					Debug.Log("North");					
+					if (floorScript.CanMoveNorth()) {
 						floorScript.MoveNorth();
 					}
 				}
 				shouldBeListening = false;
 			}
-			//		else if (Input.GetKeyUp("right")) {
-			//			print (floorScript.CanMoveEast ());
-			//			if (floorScript.CanMoveEast ()) {
-			//				floorScript.MoveEast ();
-			//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-			//				print (newPosition);
-			////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-			//			}
-			//		}
-			//		else if (Input.GetKeyUp("down")) {
-			//			print (floorScript.CanMoveSouth ());
-			//			if (floorScript.CanMoveSouth ()) {
-			//				floorScript.MoveSouth ();
-			//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-			//				print (newPosition);
-			////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-			//			}
-			//		}
-			//		else if (Input.GetKeyUp("up")) {
-			//			print (floorScript.CanMoveNorth ());
-			//			if (floorScript.CanMoveNorth ()) {
-			//				floorScript.MoveNorth ();
-			//				Vector3 newPosition = Vector3.MoveTowards(Camera.main.transform.position, floorScript.currentRoom.transform.position, 100f);
-			//				print (newPosition);
-			////				Camera.main.transform.Translate(new Vector3 (newPosition.x, newPosition.y, 0.0f));
-			//			}
-
-
-		} else {
+		}
+		else {
 			isDragging = false;
+		}
+		if (Input.GetKeyUp (KeyCode.Mouse0)) {
 			shouldBeListening = true;
 		}
+
 		Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
 		moveTo.z = -10f;
-//		Debug.Log (moveTo);
 		Camera.main.transform.position = moveTo;
 	}
 }
