@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 currentPosition = Camera.main.transform.position;
-		# if UNITY_STANDALONE || UNITY_WEB_PLAYER
+		# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
 		moveMouse();
 		# else
 		moveTouch();
