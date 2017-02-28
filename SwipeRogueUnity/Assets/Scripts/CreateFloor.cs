@@ -20,21 +20,36 @@ public enum Direction {
  */
 public class RoomClass {
 	public Dictionary<Direction, RoomClass> neighbors;
-	private int number;
+	public int number;
 	private RoomClass parent;
+    public int x;
+    public int y;
 
-	/**
+    /**
 	 * Instantiate a room with a number and it's parent
 	 */
-	public RoomClass(int number, RoomClass parent) {
+    public RoomClass(int number, RoomClass parent) {
 		this.number = number;
 		this.parent = parent;
+        x = parent.x;
+        y = parent.y;
 		this.neighbors = new Dictionary<Direction, RoomClass>();
 		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
 			this.neighbors.Add(direction, null);
 		}
 	}
-
+    public RoomClass(int number, RoomClass parent,int x,int y)
+    {
+        this.number = number;
+        this.parent = parent;
+        this.x = x;
+        this.y = y;
+        this.neighbors = new Dictionary<Direction, RoomClass>();
+        foreach (Direction direction in Direction.GetValues(typeof(Direction)))
+        {
+            this.neighbors.Add(direction, null);
+        }
+    }
 	/**
 	 * Check to see if the room has a free edge
 	 */
@@ -87,34 +102,44 @@ public class RoomClass {
 
 public class CreateFloor : MonoBehaviour {
 
-//    public Transform[] spawnLocations;
-//    public GameObject RoomPrefab;
-//    public GameObject RoomClone;
-//
-//    private List<Room> roomList;
-//    public int numOfRooms = 10;
-//    private int roomsMade;
-//
-//
-//    public string[] roomTypes;
-//
-//    
-//
-
+    //    public Transform[] spawnLocations;
+    //    public GameObject RoomPrefab;
+    //    public GameObject RoomClone;
+    //
+    //    private List<Room> roomList;
+    //    public int numOfRooms = 10;
+    //    private int roomsMade;
+    //
+    //
+    //    public string[] roomTypes;
+    //
+    //    
+    //
 	private List<RoomClass> rooms;
 
     // Use this for initialization
     private void Start () {
-		
-		// initialize the list of rooms with a single parent room
-		rooms = new List<RoomClass> ();
-		rooms.Add(new RoomClass(0, null));
 
-		// randomly add 10 connected rooms to the floor
-		for (int i = 1; i < 10; i++) {
+        //initialize multidimensional array 
+        
+        // grid cords for starting room & new initialized rooms
+        int x = 5;  
+        int y = 5;
 
-			// get the old node and the new node we will be linking to it
-			RoomClass newParent = GetRandomRoomWithFreeNeighbors ();
+        // How many rooms there should be. 
+        int totalRooms = 10;           
+
+        // initialize the list of rooms with a single parent room
+        rooms = new List<RoomClass> ();
+		rooms.Add(new RoomClass(0, null,x,y));  // ###################### initializing first room with overloaded method
+
+        // randomly add 10 connected rooms to the floor. Is increased by one when a room overlaps so there will be (10) rooms
+        for (int i = 1; i < totalRooms; i++) {
+
+            bool overlap = false;
+
+            // get the old node and the new node we will be linking to it
+            RoomClass newParent = GetRandomRoomWithFreeNeighbors ();
 			RoomClass newRoom = new RoomClass (i, newParent);
 
 			// get the directions so we can bind the rooms both ways
@@ -129,12 +154,57 @@ public class CreateFloor : MonoBehaviour {
 			else
 				oppositeDirection = Direction.West;
 
-			// link the two nodes both ways
-			newParent.neighbors[direction] = newRoom;
-			newRoom.neighbors [oppositeDirection] = newParent;
+            // Sets newRoom's x & y to parents
+            newRoom.x = newParent.x;
+            newRoom.y = newParent.y;
+            
+            // Checks which direction the newRoom is compared to its parent and changes x or y accordingly.
+            if (oppositeDirection == Direction.South)
+            {
+                newRoom.x++;
+            }
+            else if (oppositeDirection == Direction.North)
+            {
+                newRoom.x--;
+            }
+            else if (oppositeDirection == Direction.East)
+            {
+                newRoom.y++;
+            }
+            else if (oppositeDirection == Direction.West)
+            {
+                newRoom.y--;
+            }
 
-			// add the new room to the list so we can search again
-			rooms.Add(newRoom);
+            //print("PARENT ID: " +newParent.number + "  x: " + newParent.x + "  y: " + newParent.y);
+            //print("ROOM ID: " + newRoom.number + "   x: " + newRoom.x + "  y: " + newRoom.y + "  # of Rooms: " + rooms.Count);
+
+            // Loops through current rooms in the list and checks if newRoom x&y match any other rooms
+            for (int j = 1;j < rooms.Count; j++)
+            {
+                // If there is a match break out of loop and set overlap to true
+                if(newRoom.x == rooms[j].x && newRoom.y == rooms[j].y)
+                {
+                    overlap = true;
+                    print("OVERLAP: ID: " + newRoom.number + " newRoom.x: " + newRoom.x + "  newRoom.y: " + newRoom.y + " rooms[" + j + "] ID: " + rooms[j].number +" room[" + j+"].x: " + rooms[j].x + "  room[" + j + "].y: " + rooms[j].y);
+                    totalRooms++;
+                    break;
+                }
+            }
+
+
+            // If not true then the newRoom is not overlaping another room so its ok to use
+            if (!overlap)
+            {
+                // link the two nodes both ways
+                newParent.neighbors[direction] = newRoom;
+                newRoom.neighbors[oppositeDirection] = newParent;
+
+
+                // add the new room to the list so we can search again
+                rooms.Add(newRoom);
+            }
+
 		}
 
 		// test that this worked
