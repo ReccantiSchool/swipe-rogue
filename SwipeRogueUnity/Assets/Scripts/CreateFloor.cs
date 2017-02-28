@@ -89,6 +89,7 @@ public class RoomClass {
 	{
 		string roomString = string.Format ("ID: {0}\n", this.number);
 		roomString += (this.parent == null) ? string.Format ("Parent: null\n") : string.Format ("Parent: {0}\n", this.parent.number);
+		roomString += string.Format("({0}, {1})", this.x, this.y);
 		roomString += "Neighbors:\n"; 
 		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
 			RoomClass directionRoom = this.neighbors [direction];
