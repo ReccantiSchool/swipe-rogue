@@ -236,9 +236,9 @@ public class FloorManager : MonoBehaviour {
 		roomPrefabs = new Dictionary<RoomClass, GameObject>(new RoomClassComparer());
 		int counter = 0;
 		foreach (RoomClass room in rooms) {
-			float xCoordinate = 2 * camWidth * room.x;
-			float yCoordinate = 2 * camHeight * room.y;
-			GameObject newRoomPrefab = Instantiate (floorPrefab, new Vector3(xCoordinate, yCoordinate, 0f), Quaternion.identity) as GameObject;
+			float xCoordinate = 2 * camHeight * room.x;
+			float yCoordinate = 2 * camWidth * room.y;
+			GameObject newRoomPrefab = Instantiate (floorPrefab, new Vector3(-yCoordinate, xCoordinate, 0f), Quaternion.identity) as GameObject;
 			newRoomPrefab.GetComponentInChildren<TextMesh>().text = counter.ToString();
 			newRoomPrefab.GetComponent<Room>().roomclass = room;
 			counter++;
@@ -308,15 +308,19 @@ public class FloorManager : MonoBehaviour {
 	 * Functions that update the current room
 	 */
 	public void MoveNorth() {
+		Debug.Log("north");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.North]];
 	}
 	public void MoveSouth() {
+		Debug.Log("south");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.South]];
 	}
 	public void MoveEast() {
+		Debug.Log("East");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.East]];
 	}
 	public void MoveWest() {
+		Debug.Log("West");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.West]];
 	}
 		
