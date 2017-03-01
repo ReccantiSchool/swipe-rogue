@@ -7,99 +7,99 @@ using UnityEngine;
  * An enum of the different directions that the
  * user can access
  */
-public enum Direction {
-	North,
-	South,
-	East,
-	West
-};
+// public enum Direction {
+// 	North,
+// 	South,
+// 	East,
+// 	West
+// };
 
-/**
- * This class holds data related to Rooms in the floor graph.
- * This may later be replaced with a MonoBehavior game object
- */
-public class RoomClass {
-	public Dictionary<Direction, RoomClass> neighbors;
-	public int number;
-	private RoomClass parent;
-    public int x;
-    public int y;
+// /**
+//  * This class holds data related to Rooms in the floor graph.
+//  * This may later be replaced with a MonoBehavior game object
+//  */
+// public class RoomClass {
+// 	public Dictionary<Direction, RoomClass> neighbors;
+// 	public int number;
+// 	private RoomClass parent;
+//     public int x;
+//     public int y;
 
-    /**
-	 * Instantiate a room with a number and it's parent
-	 */
-    public RoomClass(int number, RoomClass parent) {
-		this.number = number;
-		this.parent = parent;
-        x = parent.x;
-        y = parent.y;
-		this.neighbors = new Dictionary<Direction, RoomClass>();
-		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
-			this.neighbors.Add(direction, null);
-		}
-	}
-    public RoomClass(int number, RoomClass parent,int x,int y)
-    {
-        this.number = number;
-        this.parent = parent;
-        this.x = x;
-        this.y = y;
-        this.neighbors = new Dictionary<Direction, RoomClass>();
-        foreach (Direction direction in Direction.GetValues(typeof(Direction)))
-        {
-            this.neighbors.Add(direction, null);
-        }
-    }
-	/**
-	 * Check to see if the room has a free edge
-	 */
-	public bool HasFreeEdges() {
-		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
-			if (this.neighbors [direction] == null) {
-				return true;
-			}
-		}
-		return false;
-	}
+//     /**
+// 	 * Instantiate a room with a number and it's parent
+// 	 */
+//     public RoomClass(int number, RoomClass parent) {
+// 		this.number = number;
+// 		this.parent = parent;
+//         x = parent.x;
+//         y = parent.y;
+// 		this.neighbors = new Dictionary<Direction, RoomClass>();
+// 		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+// 			this.neighbors.Add(direction, null);
+// 		}
+// 	}
+//     public RoomClass(int number, RoomClass parent,int x,int y)
+//     {
+//         this.number = number;
+//         this.parent = parent;
+//         this.x = x;
+//         this.y = y;
+//         this.neighbors = new Dictionary<Direction, RoomClass>();
+//         foreach (Direction direction in Direction.GetValues(typeof(Direction)))
+//         {
+//             this.neighbors.Add(direction, null);
+//         }
+//     }
+// 	/**
+// 	 * Check to see if the room has a free edge
+// 	 */
+// 	public bool HasFreeEdges() {
+// 		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+// 			if (this.neighbors [direction] == null) {
+// 				return true;
+// 			}
+// 		}
+// 		return false;
+// 	}
 
-	/**
-	 * Get a random direction that doesn't have a room next to it
-	 */
-	public Direction GetRandomFreeDirection() {
+// 	/**
+// 	 * Get a random direction that doesn't have a room next to it
+// 	 */
+// 	public Direction GetRandomFreeDirection() {
 
-		// create a list of directions, and randomly remove values from it
-		// until we find a neighbor in the direction that is unoccupied
-		Direction[] directions = (Direction[])Direction.GetValues(typeof(Direction));
-		List<Direction> directionList = new List<Direction> (directions);
-		while (directionList.Count > 1) {
-			int randomIndex = Random.Range (0, directionList.Count);
-			if (this.neighbors [directionList[randomIndex]] == null) {
-				return directionList [randomIndex];
-			} else {
-				directionList.RemoveAt(randomIndex);
-			}
-		}
-		return directionList[0];
-	}
+// 		// create a list of directions, and randomly remove values from it
+// 		// until we find a neighbor in the direction that is unoccupied
+// 		Direction[] directions = (Direction[])Direction.GetValues(typeof(Direction));
+// 		List<Direction> directionList = new List<Direction> (directions);
+// 		while (directionList.Count > 1) {
+// 			int randomIndex = Random.Range (0, directionList.Count);
+// 			if (this.neighbors [directionList[randomIndex]] == null) {
+// 				return directionList [randomIndex];
+// 			} else {
+// 				directionList.RemoveAt(randomIndex);
+// 			}
+// 		}
+// 		return directionList[0];
+// 	}
 
-	/**
-	 * Print all of the properties of the Room object
-	 */
-	public override string ToString ()
-	{
-		string roomString = string.Format ("ID: {0}\n", this.number);
-		roomString += (this.parent == null) ? string.Format ("Parent: null\n") : string.Format ("Parent: {0}\n", this.parent.number);
-		roomString += string.Format("({0}, {1})", this.x, this.y);
-		roomString += "Neighbors:\n"; 
-		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
-			RoomClass directionRoom = this.neighbors [direction];
-			roomString += (directionRoom == null) ? string.Format ("\t{0}: null\n", direction.ToString()) : string.Format ("\t{0}: {1}\n", direction.ToString(), directionRoom.number);
-		}
-		return roomString;
-	}
+// 	/**
+// 	 * Print all of the properties of the Room object
+// 	 */
+// 	public override string ToString ()
+// 	{
+// 		string roomString = string.Format ("ID: {0}\n", this.number);
+// 		roomString += (this.parent == null) ? string.Format ("Parent: null\n") : string.Format ("Parent: {0}\n", this.parent.number);
+// 		roomString += string.Format("({0}, {1})", this.x, this.y);
+// 		roomString += "Neighbors:\n"; 
+// 		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+// 			RoomClass directionRoom = this.neighbors [direction];
+// 			roomString += (directionRoom == null) ? string.Format ("\t{0}: null\n", direction.ToString()) : string.Format ("\t{0}: {1}\n", direction.ToString(), directionRoom.number);
+// 		}
+// 		return roomString;
+// 	}
 
 
-}
+// }
 
 public class CreateFloor : MonoBehaviour {
 

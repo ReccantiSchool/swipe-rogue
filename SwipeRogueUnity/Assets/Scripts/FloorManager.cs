@@ -2,104 +2,137 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * A class that describes a Room
+ */
+public class RoomClass {
+	public Dictionary<Direction, RoomClass> neighbors;
+	public int number;
+	private RoomClass parent;
+	public int x;
+	public int y;
+
+	/**
+	* Instantiate a room with a number and it's parent
+	*/
+	public RoomClass(int number, RoomClass parent) {
+		this.number = number;
+		this.parent = parent;
+		x = parent.x;
+		y = parent.y;
+		this.neighbors = new Dictionary<Direction, RoomClass>();
+		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+			this.neighbors.Add(direction, null);
+		}
+	}
+	public RoomClass(int number, RoomClass parent,int x,int y)
+	{
+		this.number = number;
+		this.parent = parent;
+		this.x = x;
+		this.y = y;
+		this.neighbors = new Dictionary<Direction, RoomClass>();
+		foreach (Direction direction in Direction.GetValues(typeof(Direction)))
+		{
+			this.neighbors.Add(direction, null);
+		}
+	}
+	/**
+	* Check to see if the room has a free edge
+	*/
+	public bool HasFreeEdges() {
+		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+			if (this.neighbors [direction] == null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	* Get a random direction that doesn't have a room next to it
+	*/
+	public Direction GetRandomFreeDirection() {
+
+		// create a list of directions, and randomly remove values from it
+		// until we find a neighbor in the direction that is unoccupied
+		Direction[] directions = (Direction[])Direction.GetValues(typeof(Direction));
+		List<Direction> directionList = new List<Direction> (directions);
+		while (directionList.Count > 1) {
+			int randomIndex = Random.Range (0, directionList.Count);
+			if (this.neighbors [directionList[randomIndex]] == null) {
+				return directionList [randomIndex];
+			} else {
+				directionList.RemoveAt(randomIndex);
+			}
+		}
+		return directionList[0];
+	}
+
+	/**
+	* Print all of the properties of the Room object
+	*/
+	public override string ToString ()
+	{
+		string roomString = string.Format ("ID: {0}\n", this.number);
+		roomString += (this.parent == null) ? string.Format ("Parent: null\n") : string.Format ("Parent: {0}\n", this.parent.number);
+		roomString += string.Format("({0}, {1})\n", this.x, this.y);
+		roomString += "Neighbors:\n"; 
+		foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
+			RoomClass directionRoom = this.neighbors [direction];
+			roomString += (directionRoom == null) ? string.Format ("\t{0}: null\n", direction.ToString()) : string.Format ("\t{0}: {1}\n", direction.ToString(), directionRoom.number);
+		}
+		return roomString;
+	}
+
+	/**
+	 * Create a custom hash code so we can use this as a key in a dicitonary
+	 */
+	 public override int GetHashCode() {
+		 return this.number.GetHashCode();
+	 }
+
+	 /**
+	  * Create a function that compares two room classes to determine
+	  * if they are equal
+	  */
+	  public override bool Equals(object obj) {
+		  return Equals(obj as RoomClass);
+	  }
+	  public bool Equals(RoomClass room) {
+		  return room != null && room.number != this.number;
+	  }
+}
+
+/** 
+ * A class that will allow us to compare with a dictionary
+ */
+class RoomClassComparer : IEqualityComparer<RoomClass> {
+	public bool Equals(RoomClass room1, RoomClass room2) {
+		return room1.number == room2.number;
+	}
+	public int GetHashCode(RoomClass room) {
+		return room.number.GetHashCode();
+	}
+}
+
+/**
+ * An enum which represents the different
+ * cardinal directions
+ */
+public enum Direction {
+	North,
+	South,
+	East,
+	West
+};
+
 public class FloorManager : MonoBehaviour {
 
 	public GameObject floorPrefab;
 	private List<RoomClass> rooms;
-	private List<GameObject> roomPrefabs;
+	private Dictionary<RoomClass, GameObject> roomPrefabs;
 	public GameObject currentRoom { get; set; }
-	public enum Direction {
-		North,
-		South,
-		East,
-		West
-	};
-
-	/**
-	 * A class that describes a Room
-	 */
-	private class RoomClass {
-		public Dictionary<Direction, RoomClass> neighbors;
-		public int number;
-		private RoomClass parent;
-		public int x;
-		public int y;
-
-		/**
-		* Instantiate a room with a number and it's parent
-		*/
-		public RoomClass(int number, RoomClass parent) {
-			this.number = number;
-			this.parent = parent;
-			x = parent.x;
-			y = parent.y;
-			this.neighbors = new Dictionary<Direction, RoomClass>();
-			foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
-				this.neighbors.Add(direction, null);
-			}
-		}
-		public RoomClass(int number, RoomClass parent,int x,int y)
-		{
-			this.number = number;
-			this.parent = parent;
-			this.x = x;
-			this.y = y;
-			this.neighbors = new Dictionary<Direction, RoomClass>();
-			foreach (Direction direction in Direction.GetValues(typeof(Direction)))
-			{
-				this.neighbors.Add(direction, null);
-			}
-		}
-		/**
-		* Check to see if the room has a free edge
-		*/
-		public bool HasFreeEdges() {
-			foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
-				if (this.neighbors [direction] == null) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		/**
-		* Get a random direction that doesn't have a room next to it
-		*/
-		public Direction GetRandomFreeDirection() {
-
-			// create a list of directions, and randomly remove values from it
-			// until we find a neighbor in the direction that is unoccupied
-			Direction[] directions = (Direction[])Direction.GetValues(typeof(Direction));
-			List<Direction> directionList = new List<Direction> (directions);
-			while (directionList.Count > 1) {
-				int randomIndex = Random.Range (0, directionList.Count);
-				if (this.neighbors [directionList[randomIndex]] == null) {
-					return directionList [randomIndex];
-				} else {
-					directionList.RemoveAt(randomIndex);
-				}
-			}
-			return directionList[0];
-		}
-
-		/**
-		* Print all of the properties of the Room object
-		*/
-		public override string ToString ()
-		{
-			string roomString = string.Format ("ID: {0}\n", this.number);
-			roomString += (this.parent == null) ? string.Format ("Parent: null\n") : string.Format ("Parent: {0}\n", this.parent.number);
-			roomString += string.Format("({0}, {1})\n", this.x, this.y);
-			roomString += "Neighbors:\n"; 
-			foreach (Direction direction in Direction.GetValues(typeof(Direction))) {
-				RoomClass directionRoom = this.neighbors [direction];
-				roomString += (directionRoom == null) ? string.Format ("\t{0}: null\n", direction.ToString()) : string.Format ("\t{0}: {1}\n", direction.ToString(), directionRoom.number);
-			}
-			return roomString;
-		}
-
-
-	}
 
 	/**
 	 * A function that will render the floor
@@ -200,32 +233,18 @@ public class FloorManager : MonoBehaviour {
 		// Render each of the rooms on the screen
 		float camWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
 		float camHeight = Camera.main.orthographicSize;
-		roomPrefabs = new List<GameObject>();
+		roomPrefabs = new Dictionary<RoomClass, GameObject>(new RoomClassComparer());
 		int counter = 0;
 		foreach (RoomClass room in rooms) {
 			float xCoordinate = 2 * camWidth * room.x;
 			float yCoordinate = 2 * camHeight * room.y;
 			GameObject newRoomPrefab = Instantiate (floorPrefab, new Vector3(xCoordinate, yCoordinate, 0f), Quaternion.identity) as GameObject;
 			newRoomPrefab.GetComponentInChildren<TextMesh>().text = counter.ToString();
+			newRoomPrefab.GetComponent<Room>().roomclass = room;
 			counter++;
-			roomPrefabs.Add(newRoomPrefab);
+			roomPrefabs.Add(room, newRoomPrefab);
 		}
-		// GameObject eastRoom = Instantiate (rooms [0], new Vector3 (2 * camWidth, 0f, 0f), Quaternion.identity) as GameObject;
-		// GameObject westRoom = Instantiate (rooms [0], new Vector3 (-2 * camWidth, 0f, 0f), Quaternion.identity) as GameObject;
-		// GameObject northRoom = Instantiate (rooms [0], new Vector3 (0f, 2 * camHeight, 0f), Quaternion.identity) as GameObject;
-		// GameObject southRoom = Instantiate (rooms [0], new Vector3 (0f, -2 * camHeight, 0f), Quaternion.identity) as GameObject;
-
-		// centerRoom.GetComponent<Room> ().East = eastRoom;
-		// centerRoom.GetComponent<Room> ().West = westRoom;
-		// centerRoom.GetComponent<Room> ().North = northRoom;
-		// centerRoom.GetComponent<Room> ().South = southRoom;
-
-		// northRoom.GetComponent<Room> ().South = centerRoom;
-		// southRoom.GetComponent<Room> ().North = centerRoom;
-		// eastRoom.GetComponent<Room> ().West = centerRoom;
-		// westRoom.GetComponent<Room> ().East = centerRoom;
-
-		currentRoom = roomPrefabs[0];
+		currentRoom = roomPrefabs[rooms[0]];
 	}
 
 	/**
@@ -272,33 +291,33 @@ public class FloorManager : MonoBehaviour {
 	 * Functions that check to see if the user can move to the
 	 * specified rooms
 	 */
-	// public bool CanMoveNorth() {
-	// 	return currentRoom.GetComponent<Room> ().North != null;
-	// }
-	// public bool CanMoveSouth() {
-	// 	return currentRoom.GetComponent<Room> ().South != null;
-	// }
-	// public bool CanMoveEast() {
-	// 	return currentRoom.GetComponent<Room> ().East != null;
-	// }
-	// public bool CanMoveWest() {
-	// 	return currentRoom.GetComponent<Room> ().West != null;
-	// }
+	public bool CanMoveNorth() {
+		return currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.North] != null;
+	}
+	public bool CanMoveSouth() {
+		return currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.South] != null;
+	}
+	public bool CanMoveEast() {
+		return currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.East] != null;
+	}
+	public bool CanMoveWest() {
+		return currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.West] != null;
+	}
 
-	// /**
-	//  * Functions that update the current room
-	//  */
-	// public void MoveNorth() {
-	// 	currentRoom = currentRoom.GetComponent<Room> ().North;
-	// }
-	// public void MoveSouth() {
-	// 	currentRoom = currentRoom.GetComponent<Room> ().South;
-	// }
-	// public void MoveEast() {
-	// 	currentRoom = currentRoom.GetComponent<Room> ().East;
-	// }
-	// public void MoveWest() {
-	// 	currentRoom = currentRoom.GetComponent<Room> ().West;
-	// }
+	/**
+	 * Functions that update the current room
+	 */
+	public void MoveNorth() {
+		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.North]];
+	}
+	public void MoveSouth() {
+		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.South]];
+	}
+	public void MoveEast() {
+		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.East]];
+	}
+	public void MoveWest() {
+		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.West]];
+	}
 		
 }
