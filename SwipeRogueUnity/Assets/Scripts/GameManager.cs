@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		Vector3 currentPosition = Camera.main.transform.position;
 		# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
-		// moveMouse();
+		moveMouse();
 		# else
 		// moveTouch();
 		# endif
@@ -123,76 +123,76 @@ public class GameManager : MonoBehaviour {
 	/**
 	 * A function that handles movement with mouse controls
   	 */
-	// private void moveMouse() {
+	private void moveMouse() {
 
-	// 	if (Input.GetKey (KeyCode.Mouse0) && shouldBeListening) {
-	// 		// log the position where the mouse was first clicked
-	// 		if (!isDragging) {
-	// 			isDragging = true;
-	// 			inputDownPosition = Input.mousePosition;
-	// 			inputDownPositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	// 		}
-	// 		inputDownPosition.z = 0;
-	// 		inputDownPositionWorld.z = 0;
+		if (Input.GetKey (KeyCode.Mouse0) && shouldBeListening) {
+			// log the position where the mouse was first clicked
+			if (!isDragging) {
+				isDragging = true;
+				inputDownPosition = Input.mousePosition;
+				inputDownPositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			}
+			inputDownPosition.z = 0;
+			inputDownPositionWorld.z = 0;
 
-	// 		// get the mouse vector in world coordinates
-	// 		Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	// 		mouseWorld.z = 0;
+			// get the mouse vector in world coordinates
+			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mouseWorld.z = 0;
 
-	// 		// draw the moved vector
-	// 		Color validColor = Color.red;
-	// 		Vector3 movedVector = inputDownPositionWorld - mouseWorld;
-	// 		if (movedVector.sqrMagnitude > 20.0)
-	// 		{
-	// 			validColor = Color.green;
-	// 		}
-	// 		Debug.DrawLine(inputDownPositionWorld, mouseWorld, validColor);
+			// draw the moved vector
+			Color validColor = Color.red;
+			Vector3 movedVector = inputDownPositionWorld - mouseWorld;
+			if (movedVector.sqrMagnitude > 20.0)
+			{
+				validColor = Color.green;
+			}
+			Debug.DrawLine(inputDownPositionWorld, mouseWorld, validColor);
 
-	// 		// get y vector
-	// 		Vector3 yVector = new Vector3(inputDownPositionWorld.x, mouseWorld.y, 0);
-	// 		Debug.DrawLine(inputDownPositionWorld, yVector, Color.blue);
+			// get y vector
+			Vector3 yVector = new Vector3(inputDownPositionWorld.x, mouseWorld.y, 0);
+			Debug.DrawLine(inputDownPositionWorld, yVector, Color.blue);
 
-	// 		// get x vector
-	// 		Vector3 xVector = new Vector3(mouseWorld.x, inputDownPositionWorld.y, 0);
-	// 		Debug.DrawLine(inputDownPositionWorld, xVector, Color.cyan);
+			// get x vector
+			Vector3 xVector = new Vector3(mouseWorld.x, inputDownPositionWorld.y, 0);
+			Debug.DrawLine(inputDownPositionWorld, xVector, Color.cyan);
 
-	// 		// move based on the dragging vector
-	// 		if (Mathf.Abs(movedVector.x) > Mathf.Abs(movedVector.y) && movedVector.sqrMagnitude > 20.0) {
-	// 			if (xVector.x - inputDownPositionWorld.x > 0)
-	// 			{
-	// 				if (floorScript.CanMoveWest())
-	// 				{
-	// 					floorScript.MoveWest();
-	// 				}
-	// 			}
-	// 			else
-	// 			{
-	// 				if (floorScript.CanMoveEast())
-	// 				{
-	// 					floorScript.MoveEast();
-	// 				}
-	// 			}
-	// 			shouldBeListening = false;
-	// 		} 
-	// 		else if (Mathf.Abs(movedVector.x) < Mathf.Abs(movedVector.y) && movedVector.sqrMagnitude > 20.0) {
-	// 			if (yVector.y - inputDownPositionWorld.y > 0) {
-	// 				if (floorScript.CanMoveSouth()) {
-	// 					floorScript.MoveSouth();
-	// 				}
-	// 			}
-	// 			else {
-	// 				if (floorScript.CanMoveNorth()) {
-	// 					floorScript.MoveNorth();
-	// 				}
-	// 			}
-	// 			shouldBeListening = false;
-	// 		}
-	// 	}
-	// 	else {
-	// 		isDragging = false;
-	// 	}
-	// 	if (Input.GetKeyUp (KeyCode.Mouse0)) {
-	// 		shouldBeListening = true;
-	// 	}
-	// }
+			// move based on the dragging vector
+			if (Mathf.Abs(movedVector.x) > Mathf.Abs(movedVector.y) && movedVector.sqrMagnitude > 20.0) {
+				// if (xVector.x - inputDownPositionWorld.x > 0)
+				// {
+				// 	if (floorScript.CanMoveWest())
+				// 	{
+				// 		floorScript.MoveWest();
+				// 	}
+				// }
+				// else
+				// {
+				// 	if (floorScript.CanMoveEast())
+				// 	{
+				// 		floorScript.MoveEast();
+				// 	}
+				// }
+				shouldBeListening = false;
+			} 
+			else if (Mathf.Abs(movedVector.x) < Mathf.Abs(movedVector.y) && movedVector.sqrMagnitude > 20.0) {
+				// if (yVector.y - inputDownPositionWorld.y > 0) {
+				// 	if (floorScript.CanMoveSouth()) {
+				// 		floorScript.MoveSouth();
+				// 	}
+				// }
+				// else {
+				// 	if (floorScript.CanMoveNorth()) {
+				// 		floorScript.MoveNorth();
+				// 	}
+				// }
+				shouldBeListening = false;
+			}
+		}
+		else {
+			isDragging = false;
+		}
+		if (Input.GetKeyUp (KeyCode.Mouse0)) {
+			shouldBeListening = true;
+		}
+	}
 }
