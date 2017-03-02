@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4068908572859598}
   - component: {fileID: 212689240249944660}
-  - component: {fileID: 114537716686590768}
   - component: {fileID: 114580621455118518}
   m_Layer: 0
   m_Name: Room
@@ -127,17 +126,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114537716686590768
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1525698137043798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114580621455118518
 MonoBehaviour:
   m_ObjectHideFlags: 1
