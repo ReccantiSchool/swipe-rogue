@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 920817389c0fdf649a3d05c4c5fc54f8
-timeCreated: 1486843645
-=======
-guid: f6e120dfd9b7742a38960dfcb5bfaf88
-timeCreated: 1487460123
->>>>>>> feature-swipe-rooms
+guid: b76f54f2e6ec44a8f9ff78ed039555b7
+timeCreated: 1487478171
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
