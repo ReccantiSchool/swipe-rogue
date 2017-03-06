@@ -129,6 +129,16 @@ public enum Direction {
 
 public class FloorManager : MonoBehaviour {
 
+	// the initial x coordinate
+	public int x;
+
+	// the initial y coordinate
+	public int y;
+
+	// the total number of rooms that will be rendered
+	public int totalRooms;
+
+	// the prefab that will be rendered at each coordinate
 	public GameObject floorPrefab;
 	private List<RoomClass> rooms;
 	private Dictionary<RoomClass, GameObject> roomPrefabs;
@@ -137,18 +147,7 @@ public class FloorManager : MonoBehaviour {
 	/**
 	 * A function that will render the floor
 	 */
-	public void SetupFloor () {
-		
-
-        //initialize multidimensional array 
-        
-        // grid cords for starting room & new initialized rooms
-        int x = 5;  
-        int y = 5;
-
-        // How many rooms there should be. 
-        int totalRooms = 10;           
-
+	public void SetupFloor () {   
         // initialize the list of rooms with a single parent room
         rooms = new List<RoomClass> ();
 		rooms.Add(new RoomClass(0, null,x,y));  // ###################### initializing first room with overloaded method
@@ -206,7 +205,7 @@ public class FloorManager : MonoBehaviour {
                 if(newRoom.x == rooms[j].x && newRoom.y == rooms[j].y)
                 {
                     overlap = true;
-                    print("OVERLAP: ID: " + newRoom.number + " newRoom.x: " + newRoom.x + "  newRoom.y: " + newRoom.y + " rooms[" + j + "] ID: " + rooms[j].number +" room[" + j+"].x: " + rooms[j].x + "  room[" + j + "].y: " + rooms[j].y);
+                    // print("OVERLAP: ID: " + newRoom.number + " newRoom.x: " + newRoom.x + "  newRoom.y: " + newRoom.y + " rooms[" + j + "] ID: " + rooms[j].number +" room[" + j+"].x: " + rooms[j].x + "  room[" + j + "].y: " + rooms[j].y);
                     totalRooms++;
                     break;
                 }
@@ -226,9 +225,9 @@ public class FloorManager : MonoBehaviour {
 		}
 
 		// test that this worked
-		foreach (RoomClass r in rooms) {
-			Debug.Log (r.ToString ());
-		}
+		// foreach (RoomClass r in rooms) {
+		// 	Debug.Log (r.ToString ());
+		// }
 
 		// Render each of the rooms on the screen
 		float camWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
@@ -308,19 +307,15 @@ public class FloorManager : MonoBehaviour {
 	 * Functions that update the current room
 	 */
 	public void MoveNorth() {
-		Debug.Log("north");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.North]];
 	}
 	public void MoveSouth() {
-		Debug.Log("south");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.South]];
 	}
 	public void MoveEast() {
-		Debug.Log("East");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.East]];
 	}
 	public void MoveWest() {
-		Debug.Log("West");
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.West]];
 	}
 		

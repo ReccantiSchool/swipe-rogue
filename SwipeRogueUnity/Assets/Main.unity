@@ -198,8 +198,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1269664950}
-  - component: {fileID: 1269664951}
   - component: {fileID: 1269664952}
+  - component: {fileID: 1269664953}
+  - component: {fileID: 1269664951}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -231,7 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76f54f2e6ec44a8f9ff78ed039555b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorScript: {fileID: 1269664952}
 --- !u!114 &1269664952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,5 +243,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7a10408ea9f40d19a2adf2794b3de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  totalRooms: 15
   floorPrefab: {fileID: 1525698137043798, guid: a1504bb7a6a0b40db9716ad0d1d17cea,
     type: 2}
+--- !u!114 &1269664953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269664949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580c14e952693481682b70836ea21e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
