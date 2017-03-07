@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SouthDoor
+  - NorthDoor
+  - EastDoor
+  - WestDoor
   layers:
   - Default
   - TransparentFX
@@ -40,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1623955441
+    locked: 0
+  - name: Wall
+    uniqueID: 3745369161
     locked: 0
