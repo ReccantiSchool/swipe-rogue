@@ -240,6 +240,20 @@ public class FloorManager : MonoBehaviour {
 			GameObject newRoomPrefab = Instantiate (floorPrefab, new Vector3(-yCoordinate, xCoordinate, 0f), Quaternion.identity) as GameObject;
 			newRoomPrefab.GetComponentInChildren<TextMesh>().text = counter.ToString();
 			newRoomPrefab.GetComponent<Room>().roomclass = room;
+
+			// display the doors on the room prefab and its neighbor
+			if (room.neighbors[Direction.West] == null) {
+				newRoomPrefab.transform.Find("WestDoor").GetComponent<Renderer>().enabled = false;
+			}
+			if (room.neighbors[Direction.East] == null) {
+				newRoomPrefab.transform.Find("EastDoor").GetComponent<Renderer>().enabled = false;
+			}
+			if (room.neighbors[Direction.North] == null) {
+				newRoomPrefab.transform.Find("NorthDoor").GetComponent<Renderer>().enabled = false;
+			}
+			if (room.neighbors[Direction.South] == null) {
+				newRoomPrefab.transform.Find("SouthDoor").GetComponent<Renderer>().enabled = false;
+			}
 			counter++;
 			roomPrefabs.Add(room, newRoomPrefab);
 		}
