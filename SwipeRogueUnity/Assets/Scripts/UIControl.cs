@@ -15,7 +15,7 @@ public class UIControl : MonoBehaviour {
         endObjects = GameObject.FindGameObjectsWithTag("ShowOnEnd");
         
         EndHide();
-        //PauseHide();
+        PauseHide();
 
 
     }
@@ -32,8 +32,6 @@ public class UIControl : MonoBehaviour {
             Time.timeScale = 0;
             print("Paused");
             PauseShow();
-            
-            
         }
     }
     public void PauseOff()
@@ -47,7 +45,7 @@ public class UIControl : MonoBehaviour {
 
     public void PauseShow()
     {
-        foreach (GameObject j in pausedObjects)
+        foreach (GameObject j in this.pausedObjects)
         {
             j.SetActive(true);
         }
@@ -55,10 +53,12 @@ public class UIControl : MonoBehaviour {
 
     public void PauseHide()
     {
-        foreach (GameObject j in pausedObjects)
+        Debug.Log(this.pausedObjects.Length);
+        foreach (GameObject j in this.pausedObjects)
         {
             j.SetActive(false);
         }
+        // Debug.Log(this.pausedObjects.Length);
     }
 
 
