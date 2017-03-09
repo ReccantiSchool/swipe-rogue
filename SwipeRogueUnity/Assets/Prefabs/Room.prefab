@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4247997521997456}
   - component: {fileID: 212488991172923882}
-  - component: {fileID: 114806630899848816}
+  - component: {fileID: 114324501440677316}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -246,7 +246,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114806630899848816
+--- !u!114 &114324501440677316
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1375516514061116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920817389c0fdf649a3d05c4c5fc54f8, type: 3}
+  m_Script: {fileID: 11500000, guid: eccac8577d76c4f1185b729696fcef68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NorthRoom: {fileID: 0}
