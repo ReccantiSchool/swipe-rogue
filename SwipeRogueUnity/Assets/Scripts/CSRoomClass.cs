@@ -104,6 +104,156 @@ public class RoomClass {
 	  }
 }
 
+/**
+ * A class that will handle a Graph of room nodes, such as initialization
+ * and accessing specific or random nodes
+ */
+public class RoomGraph {
+
+	public List<RoomClass> rooms { get; private set; }
+	
+	/**
+	 * Initialize the RoomGraph
+	 */
+	public RoomGraph() {
+		rooms = new List<RoomClass>();
+	}
+
+	/**
+	 * Randomly populate the rooms list with RoomClasses
+	 */
+	public void CreateRandomGraph(int startX, int startY, int totalRooms) {
+// initialize the list of rooms with a single parent room
+        rooms = new List<RoomClass> ();
+		rooms.Add(new RoomClass(0, null, startX, startY));  // ###################### initializing first room with overloaded method
+
+        // randomly add 10 connected rooms to the floor. Is increased by one when a room overlaps so there will be (10) rooms
+        for (int i = 1; i < totalRooms; i++) {
+
+            bool overlap = false;
+
+            // get the old node and the new node we will be linking to it
+            RoomClass newParent = GetRandomRoomWithFreeNeighbors ();
+			RoomClass newRoom = new RoomClass (i, newParent);
+
+			// get the directions so we can bind the rooms both ways
+			Direction direction = newParent.GetRandomFreeDirection ();
+			Direction oppositeDirection;
+			if (direction == Direction.North) 
+				oppositeDirection = Direction.South;
+			else if (direction == Direction.South)
+				oppositeDirection = Direction.North;
+			else if (direction == Direction.West)
+				oppositeDirection = Direction.East;
+			else
+				oppositeDirection = Direction.West;
+
+            // Sets newRoom's x & y to parents
+            newRoom.x = newParent.x;
+            newRoom.y = newParent.y;
+            
+            // Checks which direction the newRoom is compared to its parent and changes x or y accordingly.
+            if (oppositeDirection == Direction.South)
+            {
+                newRoom.x++;
+            }
+            else if (oppositeDirection == Direction.North)
+            {
+                newRoom.x--;
+            }
+            else if (oppositeDirection == Direction.East)
+            {
+                newRoom.y++;
+            }
+            else if (oppositeDirection == Direction.West)
+            {
+                newRoom.y--;
+            }
+
+            //print("PARENT ID: " +newParent.number + "  x: " + newParent.x + "  y: " + newParent.y);
+            //print("ROOM ID: " + newRoom.number + "   x: " + newRoom.x + "  y: " + newRoom.y + "  # of Rooms: " + rooms.Count);
+
+            // Loops through current rooms in the list and checks if newRoom x&y match any other rooms
+            for (int j = 1;j < rooms.Count; j++)
+            {
+                // If there is a match break out of loop and set overlap to true
+                if(newRoom.x == rooms[j].x && newRoom.y == rooms[j].y)
+                {
+                    overlap = true;
+                    // print("OVERLAP: ID: " + newRoom.number + " newRoom.x: " + newRoom.x + "  newRoom.y: " + newRoom.y + " rooms[" + j + "] ID: " + rooms[j].number +" room[" + j+"].x: " + rooms[j].x + "  room[" + j + "].y: " + rooms[j].y);
+                    totalRooms++;
+                    break;
+                }
+            }
+
+
+            // If not true then the newRoom is not overlaping another room so its ok to use
+            if (!overlap)
+            {
+                // link the two nodes both ways
+                newParent.neighbors[direction] = newRoom;
+                newRoom.neighbors[oppositeDirection] = newParent;
+
+                // add the new room to the list so we can search again
+                rooms.Add(newRoom);
+            }
+		}
+	}
+
+	/**
+	 * A function to get a randomly-selected room from the
+	 * rooms array
+	 */
+	public RoomClass GetRandomRoom() {
+		int randomIndex = Random.Range(0, this.rooms.Count);
+		Debug.Log(randomIndex);
+		return rooms[randomIndex];
+	}
+
+	/**
+	 * Given a room from the List, find the furthest room from
+	 * that point. 
+	 */
+	public RoomClass GetFurthestRoomFromNode(RoomClass room) {
+		// TODO - returns a random room. In the future, this will
+		// use something like Djikstra's algorithm to find the
+		// furthest node
+		return GetRandomRoom();
+	}
+
+	/**
+	 * A function to randomly get a room with free edges
+	 */ 
+	private RoomClass GetRandomRoomWithFreeNeighbors() {
+
+		// create a shallow copy of the list so that we don't remove actual values
+		List<RoomClass> shuffleRooms = this.rooms.GetRange (0, this.rooms.Count);
+
+		// randomly remove rooms from the list
+		// until we find one with free edges
+		while (shuffleRooms.Count > 0) {
+			int randomIndex = Random.Range (0, shuffleRooms.Count);
+			if (shuffleRooms [randomIndex].HasFreeEdges ()) {
+				return shuffleRooms [randomIndex];
+			} else {
+				shuffleRooms.RemoveAt (randomIndex);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Display each Room in the graph as a string
+	 */
+	public override string ToString() {
+		string graphString = "";
+		foreach (RoomClass room in this.rooms) {
+			graphString += room.ToString() + "\n";
+		}
+		return graphString;
+	}
+}
+
 /** 
  * A class that will allow us to compare with a dictionary
  */

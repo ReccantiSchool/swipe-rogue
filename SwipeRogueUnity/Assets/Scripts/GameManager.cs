@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	[HideInInspector]
 	private FloorManager floorScript;
 
+	public bool hasKey;
+
 	/**
 	 * This function is called before the Start() method.
 	 * It creates a GameManager singleton and initializes
@@ -20,8 +22,13 @@ public class GameManager : MonoBehaviour {
 			Destroy (gameObject);
 
 		DontDestroyOnLoad (gameObject);
+
+		// initialize the floor
 		floorScript = GetComponent<FloorManager> ();
 		floorScript.SetupFloor ();
+
+		// initialize the key
+		hasKey = false;
 	}
 	
 	// Update is called once per frame
