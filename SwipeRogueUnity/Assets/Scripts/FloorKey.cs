@@ -7,6 +7,6 @@ public class FloorKey : MonoBehaviour {
 	void OnMouseDown() {
 		GameManager.instance.hasKey = true;
 		Debug.Log("Got the floor key!");
-		Destroy(gameObject);
+		this.gameObject.SetActive(false);
 	}
 }
