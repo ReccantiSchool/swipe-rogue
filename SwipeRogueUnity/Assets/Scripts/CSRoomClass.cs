@@ -218,7 +218,11 @@ public class RoomGraph {
 		// TODO - returns a random room. In the future, this will
 		// use something like Djikstra's algorithm to find the
 		// furthest node
-		return GetRandomRoom();
+		RoomClass farRoom = GetRandomRoom();
+		while (room == farRoom) {
+			farRoom = GetRandomRoom();
+		}
+		return farRoom;
 	}
 
 	/**
