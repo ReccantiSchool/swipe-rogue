@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76f54f2e6ec44a8f9ff78ed039555b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasKey: 0
 --- !u!114 &1269664952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,8 +247,10 @@ MonoBehaviour:
   x: 0
   y: 0
   totalRooms: 15
-  floorPrefab: {fileID: 1037055821980116, guid: a02beec107df4460c9b60931c8e415a7,
+  floorPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
     type: 2}
+  keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
+  exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
 --- !u!114 &1269664953
 MonoBehaviour:
   m_ObjectHideFlags: 0
