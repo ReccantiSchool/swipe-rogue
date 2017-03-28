@@ -5,6 +5,19 @@ using UnityEngine;
 public class Room : MonoBehaviour {
 
     public RoomClass roomclass;
+
+    [HideInInspector]
+    public GameObject NorthRoom;
+
+    [HideInInspector]
+    public GameObject SouthRoom;
+
+    [HideInInspector]
+    public GameObject EastRoom;
+
+    [HideInInspector]
+    public GameObject WestRoom;
+
     // public Dictionary<Direction, GameObject> neighbors { get; set; }
     // public int number { get; set; }
 

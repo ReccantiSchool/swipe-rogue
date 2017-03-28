@@ -51,9 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7a10408ea9f40d19a2adf2794b3de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-  - {fileID: 1862209540658246, guid: c0d678e7805d54c26a78e78cc13e5831, type: 2}
-  - {fileID: 1944273932371364, guid: 4fb672382204c4e58a4fde849988ba20, type: 2}
-  - {fileID: 1055634458801244, guid: 700ba234c0c324b2cabad6a0f38e642e, type: 2}
-  - {fileID: 1117924531437248, guid: 87862afaf6a254638b5dd6ca88d0b6fa, type: 2}
-  - {fileID: 1624028327190752, guid: f96deb7c02a4e41f487dfb908e5adf8f, type: 2}
+  x: 0
+  y: 0
+  totalRooms: 0
+  floorPrefab: {fileID: 1525698137043798, guid: b69d7fb9a1fbb461ebca448c3196d18d,
+    type: 2}
+  keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
+  exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
