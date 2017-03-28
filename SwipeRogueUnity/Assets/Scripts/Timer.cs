@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour {
     public float currentTime;
     public float startTime = 10f;
     public float timePercent;
+    public bool timerGo = true;
     private Image image;
     GameObject sample;
     UIControl uiControl;
@@ -19,20 +20,24 @@ public class Timer : MonoBehaviour {
         currentTime = startTime;
         image = GetComponent<Image>();
 
-        sample = GameObject.Find("timerFill");
+        sample = GameObject.Find("Main UI");
         uiControl = sample.GetComponent<UIControl>();
         //gameState = GameObject.Find("GameState").GetComponent<GameState>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        currentTime -= Time.deltaTime;
-        timePercent = currentTime / startTime;
 
+        if (timerGo)
+        {
+            currentTime -= Time.deltaTime;
+            timePercent = currentTime / startTime;
+        }
         image.fillAmount = timePercent;
 
         if (image.fillAmount == 0)
         {
+            timerGo = false;
             uiControl.EndShow();
         }
 

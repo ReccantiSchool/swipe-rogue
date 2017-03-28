@@ -7,13 +7,15 @@ public class UIControl : MonoBehaviour {
 
     GameObject[] endObjects;
     GameObject[] pausedObjects;
-    
+    GameObject pauseButton;
+    bool theEnd = false;
 
 	// Use this for initialization
 	void Start () {
         pausedObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         endObjects = GameObject.FindGameObjectsWithTag("ShowOnEnd");
-        
+        pauseButton = GameObject.Find("pauseButton");
+
         EndHide();
         PauseHide();
 
@@ -77,6 +79,7 @@ public class UIControl : MonoBehaviour {
         {
             j.SetActive(true);
         }
+        pauseButton.SetActive(false);
     }
     public void EndHide()
     {
@@ -88,6 +91,11 @@ public class UIControl : MonoBehaviour {
 
     public void LoadLevel(string lvl)
     {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            PauseHide();
+        }
         SceneManager.LoadSceneAsync(lvl);
     }
 

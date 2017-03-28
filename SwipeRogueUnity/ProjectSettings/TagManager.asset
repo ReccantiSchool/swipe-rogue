@@ -7,6 +7,7 @@ TagManager:
   - ShowOnPause
   - ShowOnEnd
   - ShowOnShow
+  - Pause
   layers:
   - Default
   - TransparentFX
