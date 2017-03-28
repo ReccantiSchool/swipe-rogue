@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - SouthDoor
-  - NorthDoor
-  - EastDoor
-  - WestDoor
+  - ShowOnPause
+  - ShowOnEnd
+  - ShowOnShow
+  - Pause
   layers:
   - Default
   - TransparentFX
@@ -45,9 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Floor
-    uniqueID: 1623955441
+  - name: Doors
+    uniqueID: 960613537
     locked: 0
-  - name: Wall
-    uniqueID: 3745369161
+  - name: Items
+    uniqueID: 3560781677
     locked: 0
