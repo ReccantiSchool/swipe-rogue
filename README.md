@@ -1,7 +1,9 @@
 # Swipe Rogue Design Document
+
 **Start Date:** February 1st 2017
 
 ## Table of Contents
+
 <pre>
 <a href="#1">1 - Game Design</a>
     <a href="#1.1">1.1 - Summary</a>
@@ -29,25 +31,30 @@
 </pre>
 
 <div id="1"></div>
+
 ## Game Design
 
 <div id="1.1"></div>
+
 ### Summary
 
 Swipe Rogue is a simple game in which the player navigates a randomly-generated dungeon. The player fights enemies and collects powerups in an attempt to get as far down the dungeon as they can.
 - Light Hearted easy going game
 
 <div id="1.2"></div>
+
 ### Inspiration
 
 I really enjoy simple mobile games like Threes and Jetpack Joyride. These games have simple controls and are easy to pick up and play. I also really enjoy roguelike games and RPGs, since I like the idea of leveling up and going on an adventure. Swipe Rogue is an attempt to make a roguelike RPG that can easily be played on mobile
 
 
 <div id="2"></div>
+
 ## Technical
 
 
 <div id="2.1"></div>
+
 ### Scenes
 
 - **Title Scene:** The title screen simply displays a button that will start the game when clicked.
@@ -57,6 +64,7 @@ I really enjoy simple mobile games like Threes and Jetpack Joyride. These games 
 
 
 <div id="2.2"></div>
+
 ### Controls
 
 - **Swiping:** Swiping will move the player to the next room in the direction of the swipe, as long as there is an open doorway in that direction.
@@ -64,6 +72,7 @@ I really enjoy simple mobile games like Threes and Jetpack Joyride. These games 
 
 
 <div id="2.3"></div>
+
 ### Mechanics
 
 - **Moving Between Rooms:** The player can move to a room with an open door by swiping in the direction of that door
@@ -72,9 +81,11 @@ I really enjoy simple mobile games like Threes and Jetpack Joyride. These games 
 - **Timer:** Each floor has a timer, if the player doesn't leave the floor before the timer runs out then the player dies. 
 
 <div id="3"></div>
+
 ## Level Design
 
 <div id="3.1"></div>
+
 ### Levels/Themes
 
 - **Maze:** The Maze is floor of randomly-generated rooms within the level.  
@@ -83,28 +94,34 @@ I really enjoy simple mobile games like Threes and Jetpack Joyride. These games 
 - **Treasure Rooms:** Rooms containing chests that have gold in them. This loot can be used to purchase more characters or weapons
 
 <div id="3.2"></div>
+
 ### Flow
 
 Enemies in the maze will scale in proportion to the floor. The user will have to be mindful of the powerups they collect on each level in order to stand a chance against later enemies
 
 <div id="4"></div>
+
 ## Development
 
 <div id="4.1"></div>
+
 ### Process
 Our Development Process Started with a paper prototype. We had the player pick up a room card and a room effect card. The room cards had specific paths and the room effects varied from adding/removing time to having to play a quick game. 
 We found that the variation in the rooms and the timer made for fun gameplay.
 
 <div id="4.2"></div>
+
 ### Code
 
 -**Unity 5:** Our game is being produced in the Unity game engine for mobile. 
 -**Code Structure:** Our code follows a hierachical structure. Most sub-classes will be inhieriting from 3 Parent classes: Item (anything the player can interact with), Character (Any character in the game, player or otheriwse) and Room(different room types).
 
 <div id="5"></div>
+
 ## Graphics
 
 <div id="5.1"></div>
+
 ### Art
 
 - 2D pixel art
@@ -112,6 +129,7 @@ We found that the variation in the rooms and the timer made for fun gameplay.
 - 16th century Conquistadors
 
 <div id="5.2"></div>
+
 ## Assets
 
 - Door (Open and Locked) x 8
@@ -125,9 +143,11 @@ We found that the variation in the rooms and the timer made for fun gameplay.
 - Stairs
 
 <div id="6"></div>
+
 ## Sounds/Music
 
 <div id="6.1"></div>
+
 ### Music
 
 - Latin American/Spanish 
@@ -135,17 +155,20 @@ We found that the variation in the rooms and the timer made for fun gameplay.
 
 
 <div id="6.2"></div>
+
 ### Effects
 
 - There will be simple sound effects for basic actions, like **attacking, picking up an item, or moving to another floor**
 
 
 <div id="7"></div>
+
 ## Team
 
 Our Team is made up of three people. While our group roles on paper are clearly defined, we tend to overlap the roles often.
 
 <div id="7.1"></div>
+
 ### Members
 
 - Zachary Wilken
@@ -153,6 +176,7 @@ Our Team is made up of three people. While our group roles on paper are clearly 
 - Ben Wilcox
 
 <div id="7.2"></div>
+
 ### Roles
 
 - **Creative Director:** **Ben Wilcox**
@@ -163,6 +187,7 @@ Our Team is made up of three people. While our group roles on paper are clearly 
 - **Art/Animation:** **Sharlene Mendez**
 
 <div id="8"></div>
+
 ## Stretch Goals
 
 - Different Playable Characters
