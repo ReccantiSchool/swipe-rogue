@@ -250,6 +250,7 @@ MonoBehaviour:
   floorPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
+  exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
 --- !u!114 &1269664953
 MonoBehaviour:
   m_ObjectHideFlags: 0
