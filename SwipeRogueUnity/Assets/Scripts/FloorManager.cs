@@ -47,7 +47,7 @@ public class FloorManager : MonoBehaviour {
 			float xCoordinate = 2 * camHeight * room.x;
 			float yCoordinate = 2 * camWidth * room.y;
 			GameObject newRoomPrefab = Instantiate (floorPrefab, new Vector3(-yCoordinate, xCoordinate, 0f), Quaternion.identity) as GameObject;
-			newRoomPrefab.GetComponentInChildren<TextMesh>().text = counter.ToString();
+			// newRoomPrefab.GetComponentInChildren<TextMesh>().text = counter.ToString();
 			newRoomPrefab.GetComponent<Room>().roomclass = room;
 
 			// display the doors on the room prefab and its neighbor
