@@ -13,12 +13,15 @@ public class Enemy : MonoBehaviour {
 	private bool shouldBeListening = true;
 
 	private Renderer render;
+	private Animator animator;
 	
 	void Start () {
 		render = GetComponent<SpriteRenderer>();
+		animator = GetComponent<Animator>();
 	}
 
 	void OnMouseEnter() {
+		animator.SetTrigger("enemyHit");
 		Debug.Log(Time.frameCount);
 	}
 
