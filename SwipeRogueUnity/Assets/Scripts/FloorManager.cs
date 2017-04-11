@@ -11,7 +11,10 @@ public class FloorManager : MonoBehaviour {
 	public int y;
 
 	// the total number of rooms that will be rendered
-	public int totalRooms;
+	public int totalRooms = 10;
+
+	// the total number of enemies who should be inserted into the scene
+	public int numEnemies = 2;
 
 	// the floor prefab that will be rendered at each coordinate
 	public GameObject floorPrefab;
@@ -21,6 +24,9 @@ public class FloorManager : MonoBehaviour {
 
 	// the exit prefab that will be rendered in a single room
 	public GameObject exitPrefab;
+
+	// the enemy prefab that will be rendered in a room
+	public GameObject enemyPrefab;
 
 	private RoomGraph rooms;
 	private Dictionary<RoomClass, GameObject> roomPrefabs;
@@ -79,6 +85,14 @@ public class FloorManager : MonoBehaviour {
 		GameObject exitRoomPrefab = roomPrefabs[exitRoom];
 		GameObject floorExit = Instantiate(exitPrefab, exitRoomPrefab.transform.position, Quaternion.identity);
 		floorExit.transform.parent = roomPrefabs[exitRoom].transform;
+
+		// initialize enemies
+		for (int i = 0; i < numEnemies; i++) {
+			RoomClass enemyRoom = rooms.GetRandomRoom();
+			GameObject enemyRoomPrefab = roomPrefabs[enemyRoom];
+			GameObject enemy = Instantiate(enemyPrefab, enemyRoomPrefab.transform.position, Quaternion.identity);
+			enemy.transform.parent = roomPrefabs[enemyRoom].transform;
+		}
 
 		// set the current room to the first room that was created
 		currentRoom = roomPrefabs[rooms.rooms[0]];
