@@ -217,6 +217,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114226896064963376, guid: 1fb496bb480fd48f3bf3d20e73b89ee3,
+        type: 2}
+      propertyPath: totalRooms
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114226896064963376, guid: 1fb496bb480fd48f3bf3d20e73b89ee3,
+        type: 2}
+      propertyPath: keyPrefab
+      value: 
+      objectReference: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2,
+        type: 2}
+    - target: {fileID: 114226896064963376, guid: 1fb496bb480fd48f3bf3d20e73b89ee3,
+        type: 2}
+      propertyPath: exitPrefab
+      value: 
+      objectReference: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd,
+        type: 2}
+    - target: {fileID: 114226896064963376, guid: 1fb496bb480fd48f3bf3d20e73b89ee3,
+        type: 2}
+      propertyPath: floorPrefab
+      value: 
+      objectReference: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
+        type: 2}
+    - target: {fileID: 114226896064963376, guid: 1fb496bb480fd48f3bf3d20e73b89ee3,
+        type: 2}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 1418533413191166, guid: c33fcb9c6e1f94508baafec1a4ea770a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fb496bb480fd48f3bf3d20e73b89ee3, type: 2}
   m_IsPrefabParent: 0
