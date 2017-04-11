@@ -22,9 +22,10 @@ public class MovementManager : MonoBehaviour {
 		Vector3 currentPosition = Camera.main.transform.position;
 		# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
 		moveMouse();
-		# else
+#else
 		moveTouch();
-		# endif
+#endif
+
 		Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
 		moveTo.z = -10f;
 		Camera.main.transform.position = moveTo;

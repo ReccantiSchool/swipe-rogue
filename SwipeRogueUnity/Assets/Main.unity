@@ -282,9 +282,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1269664950}
-  - component: {fileID: 1269664952}
   - component: {fileID: 1269664953}
   - component: {fileID: 1269664951}
+  - component: {fileID: 1269664952}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
-  totalRooms: 15
+  totalRooms: 10
   floorPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
