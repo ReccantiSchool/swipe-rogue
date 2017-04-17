@@ -11,7 +11,12 @@ public class MovementManager : MonoBehaviour {
 	private bool shouldBeListening = true;
 
 	private FloorManager floorScript;
-	
+
+	/**
+	 * Controls whether the user is currently able to move
+	 */
+	public bool canMove = true;
+
 	void Awake () {
 		floorScript = GetComponent<FloorManager>();
 	}
@@ -19,15 +24,17 @@ public class MovementManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Vector3 currentPosition = Camera.main.transform.position;
-		# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
-		moveMouse();
-		# else
-		moveTouch();
-		# endif
-		Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
-		moveTo.z = -10f;
-		Camera.main.transform.position = moveTo;
+		if (canMove) {
+			Vector3 currentPosition = Camera.main.transform.position;
+			# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
+			moveMouse();
+			# else
+			moveTouch();
+			# endif
+			Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
+			moveTo.z = -10f;
+			Camera.main.transform.position = moveTo;
+		}
 	}
 
 	/**
