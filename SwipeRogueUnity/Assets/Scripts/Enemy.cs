@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour {
 		render = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
 		// GameObject EnemyGUI = GameObject.Find("healthFront");
-		healthBar = GameObject.Find("HealthFront").GetComponent<Image>();
+		healthBar = transform.Find("EnemyGUI/HealthFront").GetComponent<Image>();
 	}
 
 	void OnMouseEnter() {
