@@ -229,6 +229,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114952980984943046, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: startTime
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1ca6fbb3a54c459f80066a14d04b97e, type: 2}
   m_IsPrefabParent: 0
@@ -335,6 +340,12 @@ MonoBehaviour:
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
   exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
+  roomAssetList:
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
 --- !u!114 &1269664953
 MonoBehaviour:
   m_ObjectHideFlags: 0
