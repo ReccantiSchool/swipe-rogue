@@ -118,6 +118,12 @@ We found that the variation in the rooms and the timer made for fun gameplay.
 -**Unity 5:** Our game is being produced in the Unity game engine for mobile. 
 -**Code Structure:** Our code follows a hierachical structure. Most sub-classes will be inhieriting from 3 Parent classes: Item (anything the player can interact with), Character (Any character in the game, player or otheriwse) and Room(different room types).
 
+<div id="4.3"></div>
+
+### Android Build
+
+For a guide in building a Unity Android application follow this link. https://unity3d.com/learn/tutorials/topics/mobile-touch/building-your-unity-game-android-device-testing
+
 <div id="5"></div>
 
 ## Graphics
