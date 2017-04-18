@@ -24,17 +24,19 @@ public class MovementManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// prevent movement if the current room has an enemy
+		canMove = !floorScript.CurrentRoomHasEnemy();
+		Vector3 currentPosition = Camera.main.transform.position;
 		if (canMove) {
-			Vector3 currentPosition = Camera.main.transform.position;
 			# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
 			moveMouse();
 			# else
 			moveTouch();
 			# endif
-			Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
-			moveTo.z = -10f;
-			Camera.main.transform.position = moveTo;
 		}
+		Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
+		moveTo.z = -10f;
+		Camera.main.transform.position = moveTo;
 	}
 
 	/**
