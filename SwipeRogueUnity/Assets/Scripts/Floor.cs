@@ -16,7 +16,7 @@ public class Floor : MonoBehaviour {
 	void Start () {
 		camWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
 		camHeight = Camera.main.orthographicSize;
-		CreateRandomFloor(10);
+		CreateRandomFloor(50);
 	}
 	
 	// Update is called once per frame
@@ -41,7 +41,7 @@ public class Floor : MonoBehaviour {
 				Room parentRoom = rooms[indexLocation].GetComponent<Room>();
 
 				// instantiate the Room at the given transform
-				Direction? adjacentDirection = parentRoom.GetRandomFreeDirection();
+				Direction? adjacentDirection = GetRandomFreeDirection(indexLocation);
 				Vector2 newLocation;
 				switch (adjacentDirection) {
 					case Direction.North:
@@ -91,10 +91,9 @@ public class Floor : MonoBehaviour {
 
 			// get a room at a random index
 			int randomIndex = Random.Range (0, shuffleLocations.Count);
-			Room randomRoom = rooms[shuffleLocations[randomIndex]].GetComponent<Room>();
 
 			// return the room location if it has a free edge. Otherwise remove it and iterate the loop
-			if (randomRoom.HasFreeEdges()) {
+			if (GetAllFreeDirections(shuffleLocations[randomIndex]).Count > 0) {
 				return shuffleLocations[randomIndex];
 			} else {
 				shuffleLocations.RemoveAt(randomIndex);
@@ -130,6 +129,39 @@ public class Floor : MonoBehaviour {
 		}
 
 		return adjacentDirection;
+	}
+
+	/**
+	 * Returns a list of all adjacent free spaces to a position in the grid
+	 */
+	private List<Direction> GetAllFreeDirections(Vector2 gridPostion) {
+		List<Direction> freeDirection = new List<Direction>();
+		GameObject defaultRoom;
+
+		// test the north room
+		if (!rooms.TryGetValue(gridPostion + Vector2.down, out defaultRoom)) {
+			freeDirection.Add(Direction.North);
+		}
+		// test the south room
+		if (!rooms.TryGetValue(gridPostion + Vector2.up, out defaultRoom)) {
+			freeDirection.Add(Direction.South);
+		}
+		// test the east room
+		if (!rooms.TryGetValue(gridPostion + Vector2.right, out defaultRoom)) {
+			freeDirection.Add(Direction.East);
+		}
+		// test the west room
+		if (!rooms.TryGetValue(gridPostion + Vector2.left, out defaultRoom)) {
+			freeDirection.Add(Direction.West);
+		}
+
+		return freeDirection;
+	}
+
+	private Direction GetRandomFreeDirection(Vector2 gridPosition) {
+		List<Direction> freeDirection = GetAllFreeDirections(gridPosition);
+		int randomIndex = Random.Range(0, freeDirection.Count);
+		return freeDirection[randomIndex];
 	}
 
 	private void BindRooms(GameObject fromRoom, GameObject toRoom, Direction inDirection) {
