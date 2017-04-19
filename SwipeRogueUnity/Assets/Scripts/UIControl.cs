@@ -8,6 +8,8 @@ public class UIControl : MonoBehaviour {
     GameObject[] endObjects;
     GameObject[] pausedObjects;
     GameObject pauseButton;
+    GameObject keyIcon;
+
     bool theEnd = false;
 
 	// Use this for initialization
@@ -15,17 +17,23 @@ public class UIControl : MonoBehaviour {
         pausedObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         endObjects = GameObject.FindGameObjectsWithTag("ShowOnEnd");
         pauseButton = GameObject.Find("pauseButton");
+        keyIcon = GameObject.Find("KeyIcon");
 
         EndHide();
         PauseHide();
-
+        KeyHide();
 
     }
 	
 	// Update is called once per frame
-	//void Update () {
-	//	
-	//}
+	void Update () {
+
+        if (GameManager.instance.hasKey)
+        {
+            KeyShow();
+        }
+
+	}
 
     public void PauseOn()
     {
@@ -64,15 +72,6 @@ public class UIControl : MonoBehaviour {
     }
 
 
-    public void EndOn()
-    {
-    
-    }
-    
-    public void EndOff()
-    {
-    
-    }
     public void EndShow()
     {
         foreach (GameObject j in endObjects)
@@ -88,6 +87,16 @@ public class UIControl : MonoBehaviour {
             j.SetActive(false);
         }
     }
+
+    public void KeyShow()
+    {
+        keyIcon.SetActive(true);
+    }
+    public void KeyHide()
+    {
+        keyIcon.SetActive(false);
+    }
+
 
     public void LoadLevel(string lvl)
     {

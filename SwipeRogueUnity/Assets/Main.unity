@@ -229,9 +229,117 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114952980984943046, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: startTime
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 224295998951559146, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 224295998951559146, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 238
+      objectReference: {fileID: 0}
+    - target: {fileID: 224508503941453740, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 224508503941453740, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 238
+      objectReference: {fileID: 0}
+    - target: {fileID: 224424398147218844, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 244
+      objectReference: {fileID: 0}
+    - target: {fileID: 224424398147218844, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -503
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1ca6fbb3a54c459f80066a14d04b97e, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &682763848 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224832943804203020, guid: d1ca6fbb3a54c459f80066a14d04b97e,
+    type: 2}
+  m_PrefabInternal: {fileID: 450567703}
+--- !u!1 &853681258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 853681259}
+  - component: {fileID: 853681261}
+  - component: {fileID: 853681260}
+  m_Layer: 0
+  m_Name: KeyIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &853681259
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853681258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 682763848}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 382, y: 232}
+  m_SizeDelta: {x: 130, y: 78}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &853681260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853681258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 5bfd775422dcab14282083ac881eba60, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &853681261
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853681258}
 --- !u!1001 &1230806807
 Prefab:
   m_ObjectHideFlags: 0
@@ -335,6 +443,12 @@ MonoBehaviour:
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
   exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
+  roomAssetList:
+  - {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a, type: 2}
 --- !u!114 &1269664953
 MonoBehaviour:
   m_ObjectHideFlags: 0

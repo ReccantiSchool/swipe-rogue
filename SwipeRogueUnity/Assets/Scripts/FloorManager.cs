@@ -22,7 +22,10 @@ public class FloorManager : MonoBehaviour {
 	// the exit prefab that will be rendered in a single room
 	public GameObject exitPrefab;
 
-	private RoomGraph rooms;
+    // List holding art assets to be randomly added to rooms
+    public GameObject[] roomAssetList;
+
+    private RoomGraph rooms;
 	private Dictionary<RoomClass, GameObject> roomPrefabs;
 	public GameObject currentRoom { get; set; }
 
@@ -73,9 +76,17 @@ public class FloorManager : MonoBehaviour {
 		GameObject floorKey = Instantiate(keyPrefab, keyRoomPrefab.transform.position, Quaternion.identity);
 		floorKey.transform.parent = roomPrefabs[keyRoom].transform;
 
-		// initialize a FloorExit Prefab in one of the furthest rooms from the
-		// FloorKey (This is random right now)
-		RoomClass exitRoom = rooms.GetFurthestRoomFromNode(keyRoom);
+        // initialize every art asset in the list to a random room (currently set to place it in a random location in the room)
+        for (int i = 0; i < roomAssetList.Length; i++)
+        {
+            RoomClass assetRoom = rooms.GetRandomRoom();
+            GameObject AssetRoomPrefab = roomPrefabs[assetRoom];
+            GameObject roomAsset = Instantiate(roomAssetList[i], AssetRoomPrefab.transform.position + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), -1), Quaternion.identity);
+        }
+
+        // initialize a FloorExit Prefab in one of the furthest rooms from the
+        // FloorKey (This is random right now)
+        RoomClass exitRoom = rooms.GetFurthestRoomFromNode(keyRoom);
 		GameObject exitRoomPrefab = roomPrefabs[exitRoom];
 		GameObject floorExit = Instantiate(exitPrefab, exitRoomPrefab.transform.position, Quaternion.identity);
 		floorExit.transform.parent = roomPrefabs[exitRoom].transform;

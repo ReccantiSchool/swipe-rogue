@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FloorKey : MonoBehaviour {
 
-	void OnMouseDown() {
+
+    void OnMouseDown() {
 		GameManager.instance.hasKey = true;
 		Debug.Log("Got the floor key!");
-		this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
 	}
 }
