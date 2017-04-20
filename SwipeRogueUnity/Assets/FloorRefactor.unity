@@ -91,47 +91,60 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1759899666
-GameObject:
+--- !u!1001 &1337043157
+Prefab:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1759899668}
-  - component: {fileID: 1759899667}
-  m_Layer: 0
-  m_Name: floorPrefab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1759899667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1759899666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7339e78c4c6924e58aba1890ec89b598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d, type: 2}
---- !u!4 &1759899668
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1759899666}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 906.76013, y: 601.1932, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.09445555
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036593394228930, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362627967257016, guid: a7a67594c0bb94564935e7c6f7234f28,
+        type: 2}
+      propertyPath: floorPrefab
+      value: 
+      objectReference: {fileID: 1464801710647372, guid: e4a71dc23d5014493abed86c7f8453a7,
+        type: 2}
+    - target: {fileID: 114362627967257016, guid: a7a67594c0bb94564935e7c6f7234f28,
+        type: 2}
+      propertyPath: roomPrefab
+      value: 
+      objectReference: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1998048398
 GameObject:
   m_ObjectHideFlags: 0

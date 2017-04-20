@@ -49,7 +49,6 @@ public class Room : MonoBehaviour {
      * Determine whether or not to render the doors
      */
     private void UpdateDoors() {
-        Debug.Log(northDoor);
         northDoor.enabled = (NorthRoom == null) ? false : true;
         southDoor.enabled = (SouthRoom == null) ? false : true;
         eastDoor.enabled = (EastRoom == null) ? false : true;

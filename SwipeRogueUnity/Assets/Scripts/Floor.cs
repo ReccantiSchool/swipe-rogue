@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour {
 
+	// a dictionary with references to all the rooms and their locations
 	public Dictionary<Vector2, GameObject> rooms = new Dictionary<Vector2, GameObject>();
+
+	// the prefab that will be used to render a room
 	public GameObject roomPrefab;
+
+	// is this a custom floor. If it is, the random generation function will not be run
+	public bool isCustomFloor = false;
+
+	// the total number of rooms that should be generated
+	public int totalRooms = 10;
 
 	// references to the camera dimensions that will be calulated once
 	private float camWidth;
 	private float camHeight;
 
-
 	// Use this for initialization
 	void Start () {
+		
+	}
+
+	public void InitializeFloor() {
 		camWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
 		camHeight = Camera.main.orthographicSize;
-		CreateRandomFloor(50);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		if (!isCustomFloor) {
+			CreateRandomFloor(totalRooms);
+			Debug.Log(rooms.Count);
+		}
 	}
 
 	/**
@@ -38,7 +48,6 @@ public class Floor : MonoBehaviour {
 			// get a random room with a free neighbor
 			// and make sure that it doesn't conflict with another neighbor
 			Vector2? parentRoomLocation = GetRandomRoomLocationWithFreeNeighbors();
-			Debug.Log(parentRoomLocation);
 			if (parentRoomLocation != null) {
 				Vector2 indexLocation = parentRoomLocation ?? default(Vector2);
 				Room parentRoom = rooms[indexLocation].GetComponent<Room>();
