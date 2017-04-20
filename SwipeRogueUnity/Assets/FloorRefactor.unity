@@ -142,6 +142,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
         type: 2}
+    - target: {fileID: 114362627967257016, guid: a7a67594c0bb94564935e7c6f7234f28,
+        type: 2}
+      propertyPath: totalRooms
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7a67594c0bb94564935e7c6f7234f28, type: 2}
   m_IsPrefabParent: 0

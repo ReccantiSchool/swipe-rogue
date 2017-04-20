@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7339e78c4c6924e58aba1890ec89b598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomsStore:
+    keys: []
+    values: []
   roomPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d, type: 2}
   isCustomFloor: 0
-  totalRooms: 10
+  totalRooms: 50
