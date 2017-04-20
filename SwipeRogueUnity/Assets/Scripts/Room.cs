@@ -7,52 +7,53 @@ public class Room : MonoBehaviour {
     public RoomClass roomclass;
 
     public GameObject NorthRoom;
-
     public GameObject SouthRoom;
-
     public GameObject EastRoom;
-
     public GameObject WestRoom;
 
-    /**
-     * Check to see if this room has a free edge
-     */
-    public bool HasFreeEdges() {
-        if (NorthRoom == null ||
-            SouthRoom == null ||
-            EastRoom  == null ||
-            WestRoom  == null) {
-            return true;
-        }
-        return false;
+    private Renderer northDoor;
+    private Renderer southDoor;
+    private Renderer eastDoor;
+    private Renderer westDoor;
+
+    void Awake() {
+        // get references to the doors
+        northDoor = transform.Find("NorthDoor").GetComponent<Renderer>();
+        southDoor = transform.Find("SouthDoor").GetComponent<Renderer>();
+        eastDoor = transform.Find("EastDoor").GetComponent<Renderer>();
+        westDoor = transform.Find("WestDoor").GetComponent<Renderer>();
     }
 
     /**
-     * Returns a random free adjacent direction to the room
+     * Sets the neighbor for the room in the given direction
      */
-    public Direction? GetRandomFreeDirection() {
+    public void SetNeighbor(Direction direction, GameObject room) {
+        switch (direction) {
+            case (Direction.North):
+                NorthRoom = room;
+                break;
+            case (Direction.South):
+                SouthRoom = room;
+                break;
+            case (Direction.East):
+                EastRoom = room;
+                break;
+            default:
+                WestRoom = room;
+                break;
+        }
+        UpdateDoors();
+    }
 
-        // generate a list of free adjacent directions
-        List<Direction> freeDirections = new List<Direction>();
-        if (NorthRoom == null) {
-            freeDirections.Add(Direction.North);
-        }
-        if (SouthRoom == null) {
-            freeDirections.Add(Direction.South);
-        }
-        if (EastRoom == null) {
-            freeDirections.Add(Direction.East);
-        }
-        if (WestRoom == null) {
-            freeDirections.Add(Direction.West);
-        }
-        
-        // return a random free adjacent direction or null if none exist
-        if (freeDirections.Count > 0) {
-            int freeIndex = Random.Range(0, freeDirections.Count);
-            return freeDirections[freeIndex];
-        }
-        return null;
+    /**
+     * Determine whether or not to render the doors
+     */
+    private void UpdateDoors() {
+        Debug.Log(northDoor);
+        northDoor.enabled = (NorthRoom == null) ? false : true;
+        southDoor.enabled = (SouthRoom == null) ? false : true;
+        eastDoor.enabled = (EastRoom == null) ? false : true;
+        westDoor.enabled = (WestRoom == null) ? false : true;
     }
 
 }

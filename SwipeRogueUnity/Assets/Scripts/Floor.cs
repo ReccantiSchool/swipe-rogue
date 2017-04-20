@@ -24,6 +24,9 @@ public class Floor : MonoBehaviour {
 		
 	}
 
+	/**
+	 * Randomly generates a connected graph of rooms
+	 */
 	public void CreateRandomFloor(int roomCount) {
 
 		// initialize the rooms list with a single parent node
@@ -41,23 +44,27 @@ public class Floor : MonoBehaviour {
 				Room parentRoom = rooms[indexLocation].GetComponent<Room>();
 
 				// instantiate the Room at the given transform
-				Direction? adjacentDirection = GetRandomFreeDirection(indexLocation);
-				Vector2 newLocation;
-				switch (adjacentDirection) {
-					case Direction.North:
-						newLocation = indexLocation + Vector2.down;
-						break;
-					case Direction.South:
-						newLocation = indexLocation + Vector2.up;
-						break;
-					case Direction.East:
-						newLocation = indexLocation + Vector2.right;
-						break;
-					default:
-						newLocation = indexLocation + Vector2.left;
-						break;
+				Direction? randomDirection = GetRandomFreeDirection(indexLocation);
+				if (randomDirection != null) {
+					Direction adjacentDirection = randomDirection ?? default(Direction);
+					Vector2 newLocation;
+					switch (adjacentDirection) {
+						case Direction.North:
+							newLocation = indexLocation + Vector2.down;
+							break;
+						case Direction.South:
+							newLocation = indexLocation + Vector2.up;
+							break;
+						case Direction.East:
+							newLocation = indexLocation + Vector2.right;
+							break;
+						default:
+							newLocation = indexLocation + Vector2.left;
+							break;
+					}
+					GameObject newRoom = AddRoomAtLocation(newLocation);
+					BindRooms(rooms[indexLocation], newRoom, adjacentDirection);
 				}
-				GameObject newRoom = AddRoomAtLocation(newLocation);
 
 			}
 
@@ -158,13 +165,20 @@ public class Floor : MonoBehaviour {
 		return freeDirection;
 	}
 
+	/**
+	 * Gets a random direction of a free neighbor from the current grid position
+	 */
 	private Direction GetRandomFreeDirection(Vector2 gridPosition) {
 		List<Direction> freeDirection = GetAllFreeDirections(gridPosition);
 		int randomIndex = Random.Range(0, freeDirection.Count);
 		return freeDirection[randomIndex];
 	}
 
+	/**
+	 * Set two rooms as neighbors to each other
+	 */
 	private void BindRooms(GameObject fromRoom, GameObject toRoom, Direction inDirection) {
-
+		fromRoom.GetComponent<Room>().SetNeighbor(inDirection, toRoom);
+		toRoom.GetComponent<Room>().SetNeighbor(inDirection.OppositeDirection(), fromRoom);
 	}
 }
