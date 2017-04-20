@@ -59,10 +59,10 @@ public class Floor : MonoBehaviour {
 					Vector2 newLocation;
 					switch (adjacentDirection) {
 						case Direction.North:
-							newLocation = indexLocation + Vector2.down;
+							newLocation = indexLocation + Vector2.up;
 							break;
 						case Direction.South:
-							newLocation = indexLocation + Vector2.up;
+							newLocation = indexLocation + Vector2.down;
 							break;
 						case Direction.East:
 							newLocation = indexLocation + Vector2.right;
@@ -128,11 +128,11 @@ public class Floor : MonoBehaviour {
 		GameObject defaultRoom;
 
 		// test the north room
-		if (rooms.TryGetValue(gridPostion + Vector2.down, out defaultRoom)) {
+		if (rooms.TryGetValue(gridPostion + Vector2.up, out defaultRoom)) {
 			adjacentDirection.Add(Direction.North);
 		}
 		// test the south room
-		if (rooms.TryGetValue(gridPostion + Vector2.up, out defaultRoom)) {
+		if (rooms.TryGetValue(gridPostion + Vector2.down, out defaultRoom)) {
 			adjacentDirection.Add(Direction.South);
 		}
 		// test the east room
@@ -155,11 +155,11 @@ public class Floor : MonoBehaviour {
 		GameObject defaultRoom;
 
 		// test the north room
-		if (!rooms.TryGetValue(gridPostion + Vector2.down, out defaultRoom)) {
+		if (!rooms.TryGetValue(gridPostion + Vector2.up, out defaultRoom)) {
 			freeDirection.Add(Direction.North);
 		}
 		// test the south room
-		if (!rooms.TryGetValue(gridPostion + Vector2.up, out defaultRoom)) {
+		if (!rooms.TryGetValue(gridPostion + Vector2.down, out defaultRoom)) {
 			freeDirection.Add(Direction.South);
 		}
 		// test the east room
