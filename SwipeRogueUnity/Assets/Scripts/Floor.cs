@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Vector2GameObjectDictionary: SerializableDictionary<Vector2, GameObject> {}
-
-// [CreateAssetMenu(menuName = "Floor")]
 public class Floor : MonoBehaviour {
 
 	// a dictionary with references to all the rooms and their locations
-	[SerializeField]
-	public Vector2GameObjectDictionary roomsStore = new Vector2GameObjectDictionary();
-	public Dictionary<Vector2, GameObject> rooms {
-		get { return roomsStore.dictionary; }
-	}
+	public Dictionary<Vector2, GameObject> rooms = new Dictionary<Vector2, GameObject>();
 
 	// the prefab that will be used to render a room
 	public GameObject roomPrefab;
@@ -33,9 +25,6 @@ public class Floor : MonoBehaviour {
 		
 	}
 
-	/**
-	 * a method that can be called to initialize the floor manually
-	 */
 	public void InitializeFloor() {
 		camWidth = Camera.main.orthographicSize * Screen.width / Screen.height;
 		camHeight = Camera.main.orthographicSize;
