@@ -42,13 +42,12 @@ public class Room : MonoBehaviour {
                 WestRoom = room;
                 break;
         }
-        UpdateDoors();
     }
 
     /**
      * Determine whether or not to render the doors
      */
-    private void UpdateDoors() {
+    public void UpdateDoors() {
         northDoor.enabled = (NorthRoom == null) ? false : true;
         southDoor.enabled = (SouthRoom == null) ? false : true;
         eastDoor.enabled = (EastRoom == null) ? false : true;

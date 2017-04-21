@@ -15,8 +15,8 @@ public class Floor : MonoBehaviour {
 		get { return roomsStore.dictionary; }
 	}
 
-	// the prefab that will be used to render a room
-	public GameObject roomPrefab;
+	// the default prefab that will be used to render a room
+	public GameObject defaultRoomPrefab;
 
 	// is this a custom floor. If it is, the random generation function will not be run
 	public bool isCustomFloor = false;
@@ -42,6 +42,9 @@ public class Floor : MonoBehaviour {
 		if (!isCustomFloor) {
 			CreateRandomFloor(totalRooms);
 			Debug.Log(rooms.Count);
+		}
+		foreach(var room in rooms) {
+			room.Value.GetComponent<Room>().UpdateDoors();
 		}
 	}
 
@@ -85,11 +88,7 @@ public class Floor : MonoBehaviour {
 					GameObject newRoom = AddRoomAtLocation(newLocation);
 					BindRooms(rooms[indexLocation], newRoom, adjacentDirection);
 				}
-
 			}
-
-			
-			// bind it both ways
 		}
 	}
 
@@ -98,7 +97,7 @@ public class Floor : MonoBehaviour {
 	 */
 	private GameObject AddRoomAtLocation(Vector2 gridPosition) {
 		Vector3 position = new Vector3(gridPosition.x * camWidth * 2, gridPosition.y * camHeight * 2, 0);
-		GameObject room = Instantiate(roomPrefab, position, Quaternion.identity);
+		GameObject room = Instantiate(defaultRoomPrefab, position, Quaternion.identity);
 		room.transform.parent = transform;
 		rooms.Add(gridPosition, room);
 		return room;
