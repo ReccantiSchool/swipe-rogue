@@ -1,0 +1,26 @@
+First room:
+Benjamin Wilcox
+
+Creative Director
+Lead Programmer
+
+Second Room:
+Zachary Wilken
+
+Game Programmer 
+UI Programmer
+Game Designer
+
+Third Room:
+Sharlene Mendez
+
+Producer 
+Narrative Designer 
+Artist 
+
+Fourth Room:
+Resources
+
+Serializable Dictionary - Fredrik Ludvigsen
+
+
