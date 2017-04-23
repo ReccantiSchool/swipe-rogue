@@ -18,11 +18,23 @@ public class Floor : MonoBehaviour {
 	// the default prefab that will be used to render a room
 	public GameObject defaultRoomPrefab;
 
+	// the prefab that will render the key that the player needs to pick up
+	public GameObject keyPrefab;
+
+	// the prefab that will render the door that the user needs to unlock
+	public GameObject doorPrefab;
+
+	// the enemy that will be rendered at random locations on the floor
+	public GameObject enemyPrefab;
+
 	// is this a custom floor. If it is, the random generation function will not be run
 	public bool isCustomFloor = false;
 
 	// the total number of rooms that should be generated
 	public int totalRooms = 10;
+
+	// the total number of enemies that will appear on the floor
+	public int numEnemies = 2;
 
 	// references to the camera dimensions that will be calulated once
 	private float camWidth;
@@ -41,7 +53,6 @@ public class Floor : MonoBehaviour {
 		camHeight = Camera.main.orthographicSize;
 		if (!isCustomFloor) {
 			CreateRandomFloor(totalRooms);
-			Debug.Log(rooms.Count);
 		}
 		foreach(var room in rooms) {
 			room.Value.GetComponent<Room>().UpdateDoors();
@@ -55,6 +66,9 @@ public class Floor : MonoBehaviour {
 
 		// initialize the rooms list with a single parent node
 		AddRoomAtLocation(Vector2.zero);
+
+		// create a List to hold the rooms we will randomly put items in
+		List<GameObject> itemRooms = new List<GameObject>();
 
 		// cycle through the total number of rooms wanted and add them to the list
 		for (int i = 0; i < roomCount - 1; i++) {
@@ -86,10 +100,29 @@ public class Floor : MonoBehaviour {
 							break;
 					}
 					GameObject newRoom = AddRoomAtLocation(newLocation);
+					itemRooms.Add(newRoom);
+
+					// bind the new room to its parent
 					BindRooms(rooms[indexLocation], newRoom, adjacentDirection);
 				}
 			}
 		}
+
+		// instantiate the floor key
+		int keyIndex = Random.Range(0, itemRooms.Count);
+		GameObject keyRoom = itemRooms[keyIndex];
+		GameObject key = Instantiate(keyPrefab, keyRoom.transform.position, Quaternion.identity);
+		key.transform.parent = keyRoom.transform;
+		itemRooms.RemoveAt(keyIndex);
+
+		int doorIndex = Random.Range(0, itemRooms.Count);
+		GameObject doorRoom = itemRooms[doorIndex];
+		GameObject door = Instantiate(doorPrefab, doorRoom.transform.position, Quaternion.identity);
+		door.transform.parent = doorRoom.transform;
+		itemRooms.RemoveAt(doorIndex);
+
+
+		// instantiate all enemies
 	}
 
 	/**
