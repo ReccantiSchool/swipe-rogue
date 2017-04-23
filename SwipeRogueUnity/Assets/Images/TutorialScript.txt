@@ -1,0 +1,22 @@
+Entrance:
+“Welcome to the sacred temple of Xolotl. Let’s start by getting you to the next room. Just swipe from where you want to go.”
+
+Treasure Room: 
+“Tap on the chest to collect the treasure.”
+
+Door Room:
+“This door leads to the next floor. Its locked now. You’ll need to find the key to open it.”
+
+Enemy Room:
+“Swipe the enemy to deal damage! Take too much damage and its game over.”
+
+Key Room:
+“You’ve found the key! Tap to pick it up. Remember the locked door? You’ll need to hurry back to it.”
+
+Enemy Room:
+“See the timer in the corner? You’ll need to reach the next floor before it runs out, or (red)HE(/red) will come for you.”
+
+Door Room:
+“The door is open now! Get to the next floor. From now on you’re on your own. Good Luck Conquistador.”
+
+
