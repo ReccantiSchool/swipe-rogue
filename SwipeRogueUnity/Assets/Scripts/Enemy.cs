@@ -25,6 +25,11 @@ public class Enemy : MonoBehaviour {
 	public float attackInterval = 1.0f;
 	public float endAttackInterval = 1.5f;
 
+	// attack positions
+	private Vector3 beginAttackPosition;
+	private Vector3 attackPosition;
+	private Vector3 endAttackPosition;
+
 	private float currentAttackInterval;
 	
 	// do initialization here
@@ -35,6 +40,13 @@ public class Enemy : MonoBehaviour {
 		// GameObject EnemyGUI = GameObject.Find("healthFront");
 		healthBar = transform.Find("EnemyGUI/HealthFront").GetComponent<Image>();
 		currentAttackInterval = 0.0f;
+
+		// set the attack positions
+		beginAttackPosition = transform.position + new Vector3(0, 1, 0);
+		attackPosition = transform.position + new Vector3(0, -1, 0);
+		endAttackPosition = transform.position;
+
+		Debug.Log(Vector3.Distance(beginAttackPosition, attackPosition));
 	}
 
 	void Update () {
@@ -91,7 +103,10 @@ public class Enemy : MonoBehaviour {
 	 * attack begins
 	 */
 	private void BeginAttack() {
-		Debug.Log("beginning attack");
+		float normalInterval = 1 - (beginAttackInterval - currentAttackInterval) / beginAttackInterval;
+		transform.position = Vector3.Lerp(endAttackPosition, beginAttackPosition, normalInterval);
+		Debug.Log("Beginning Attack");
+		Debug.Log(transform.position);
 	}
 
 	/**
@@ -99,7 +114,10 @@ public class Enemy : MonoBehaviour {
 	 * during the attack
 	 */
 	private void Attack() {
-		Debug.Log("attacking");
+		float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
+		transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
+		Debug.Log("Attacking");
+		Debug.Log(transform.position);
 	}
 
 	/**
@@ -107,6 +125,7 @@ public class Enemy : MonoBehaviour {
 	 * the attack happens
 	 */
 	private void EndAttack() {
-		Debug.Log("ending attack");
+		float normalInterval = 1 - (endAttackInterval - currentAttackInterval) / (endAttackInterval - attackInterval);
+		transform.position = Vector3.Lerp(attackPosition, endAttackPosition, normalInterval);
 	}
 }

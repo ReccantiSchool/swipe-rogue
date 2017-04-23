@@ -139,8 +139,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
+  shouldAttack: 1
   beginAttackInterval: 0.5
-  attackInterval: 1
+  attackInterval: 0.65
   endAttackInterval: 1.5
 --- !u!114 &114182808812255166
 MonoBehaviour:
