@@ -19,6 +19,13 @@ public class Enemy : MonoBehaviour {
 	// a reference to the health bar GUI image
 	private Image healthBar;
 
+	// attack intervals
+	public bool shouldAttack = false;
+	public float beginAttackInterval = 0.5f;
+	public float attackInterval = 1.0f;
+	public float endAttackInterval = 1.5f;
+
+	private float currentAttackInterval;
 	
 	// do initialization here
 	void Start () {
@@ -27,6 +34,30 @@ public class Enemy : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		// GameObject EnemyGUI = GameObject.Find("healthFront");
 		healthBar = transform.Find("EnemyGUI/HealthFront").GetComponent<Image>();
+		currentAttackInterval = 0.0f;
+	}
+
+	void Update () {
+		// handle attacking
+		if (shouldAttack) {
+			// begin attack if interval is less than beginAttackInterval
+			if (currentAttackInterval <= beginAttackInterval) {
+				BeginAttack();
+			}
+			// attack if interval is less than attack interval
+			else if (currentAttackInterval > beginAttackInterval && currentAttackInterval <= attackInterval) {
+				Attack();
+			}
+			// end attack if interval is less than endAttackInterval
+			else if (currentAttackInterval > attackInterval && currentAttackInterval <= endAttackInterval) {
+				EndAttack();
+			}
+			// otherwise reset the time
+			else {
+				currentAttackInterval = 0.0f;
+			}
+			currentAttackInterval += Time.deltaTime;
+		}
 	}
 
 	/**
@@ -53,5 +84,29 @@ public class Enemy : MonoBehaviour {
 		if (hp == 0) {
 			Destroy(gameObject);
 		}
+	}
+
+	/**
+	 * control all the events that need to happen before the
+	 * attack begins
+	 */
+	private void BeginAttack() {
+		Debug.Log("beginning attack");
+	}
+
+	/**
+	 * control all the events that need to happen
+	 * during the attack
+	 */
+	private void Attack() {
+		Debug.Log("attacking");
+	}
+
+	/**
+	 * control all the events that need to happen after
+	 * the attack happens
+	 */
+	private void EndAttack() {
+		Debug.Log("ending attack");
 	}
 }
