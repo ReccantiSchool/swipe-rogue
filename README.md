@@ -27,6 +27,8 @@
 	<a href="#7.1">7.1 - Members</a>
 	<a href="#7.2">7.2 - Roles</a>
 <a href="#8">8 - Stretch Goals</a>
+<a href="#9">9 - Issues</a>
+	<a href="#9.1">MoveTo Function in MovementManager throwing an error</a>
 
 </pre>
 
@@ -193,3 +195,18 @@ Our Team is made up of three people. While our group roles on paper are clearly 
 - Different Playable Characters
 - **Boss Floors:** Have a floor that only has one room and one monster. This monster would require you to swipe in different patterns to defeat it. 
 - At the moment the plan is to use freely available creative commons sounds and music. However if we have time, we hope to create our own custom sounds and music for the game.
+
+<div id="9"></div>
+
+## Issues
+
+<div id="9.1"></div>
+
+### MoveTo Function in MovementManager throwing an error
+
+This issue is caused by the Room prefab missing the required room script. To fix it, perform the following steps:
+
+1. Navigate to the Room prefab under `Assets/Prefabs/Room` and click on it
+2. If it says it's missing a script, click on the script tag in the Inspector and select the Room.cs script under `Assets/Scripts/Room`
+3. Run the project and see if it works
+
