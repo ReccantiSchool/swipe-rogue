@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
 
 	// attack intervals
 	public bool shouldAttack = false;
+	public float restAttackInterval = 2.0f;
 	public float beginAttackInterval = 0.5f;
 	public float attackInterval = 1.0f;
 	public float endAttackInterval = 1.5f;
@@ -74,6 +75,10 @@ public class Enemy : MonoBehaviour {
 			// end attack if interval is less than endAttackInterval
 			else if (currentAttackState == AttackState.EndAttack) {
 				EndAttack();
+			} 
+			// rest between attacks
+			else if (currentAttackState == AttackState.Rest) {
+				RestAttack();
 			}
 			currentAttackInterval += Time.deltaTime;
 		}
@@ -127,6 +132,7 @@ public class Enemy : MonoBehaviour {
 			float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
 			transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
 		} else {
+			Debug.Log("Attack!"); // replace with actual attack effects
 			currentAttackState = AttackState.EndAttack;
 		}
 	}
@@ -139,6 +145,14 @@ public class Enemy : MonoBehaviour {
 		if (currentAttackInterval > attackInterval && currentAttackInterval <= endAttackInterval) {
 			float normalInterval = 1 - (endAttackInterval - currentAttackInterval) / (endAttackInterval - attackInterval);
 			transform.position = Vector3.Lerp(attackPosition, endAttackPosition, normalInterval);
+		} else {
+			currentAttackState = AttackState.Rest;
+		}
+	}
+
+	private void RestAttack() {
+		if (currentAttackInterval > endAttackInterval && currentAttackInterval <= restAttackInterval) {
+			// 
 		} else {
 			currentAttackState = AttackState.BeforeAttack;
 			currentAttackInterval = 0.0f;
