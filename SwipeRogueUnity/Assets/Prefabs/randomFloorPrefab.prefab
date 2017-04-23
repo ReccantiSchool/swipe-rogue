@@ -54,6 +54,7 @@ MonoBehaviour:
   roomsStore:
     keys: []
     values: []
-  defaultRoomPrefab: {fileID: 0}
+  defaultRoomPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
+    type: 2}
   isCustomFloor: 0
   totalRooms: 50
