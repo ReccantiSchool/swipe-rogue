@@ -4,33 +4,13 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour {
 
-	// the initial x coordinate
-	public int x;
-
-	// the initial y coordinate
-	public int y;
-
-	// the total number of rooms that will be rendered
-	public int totalRooms;
-
-	// the room prefab that will be rendered at each coordinate
-	public GameObject roomPrefab;
-
-	// the key prefab that will be rendered in a single room
-	public GameObject keyPrefab;
-
-	// the exit prefab that will be rendered in a single room
-	public GameObject exitPrefab;
-
-    // List holding art assets to be randomly added to rooms
-    public GameObject[] roomAssetList;
-
 	// The floor object
 	public GameObject floorPrefab;
+
+	// a reference to the floor from the floorPrefab
 	private Floor floor;
 
-    private RoomGraph rooms;
-	private Dictionary<RoomClass, GameObject> roomPrefabs;
+	// the room that the player is currently in
 	public GameObject currentRoom { get; set; }
 
 	void Start() {
