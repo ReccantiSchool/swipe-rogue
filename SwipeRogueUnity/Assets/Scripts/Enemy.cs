@@ -21,10 +21,15 @@ public class Enemy : MonoBehaviour {
 
 	// attack intervals
 	public bool shouldAttack = false;
-	public float restAttackInterval = 2.0f;
-	public float beginAttackInterval = 0.5f;
-	public float attackInterval = 1.0f;
-	public float endAttackInterval = 1.5f;
+	// public float restAttackInterval = 2.0f;
+	// public float beginAttackInterval = 0.5f;
+	// public float attackInterval = 1.0f;
+	// public float endAttackInterval = 1.5f;
+
+	public float restAttackInterval = 0.5f;
+	public float beginAttackInterval = 1.0f;
+	public float attackInterval = 1.5f;
+	public float endAttackInterval = 2.0f;
 
 	// attack positions
 	private Vector3 beginAttackPosition;
@@ -42,7 +47,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	// the current attack state
-	private AttackState currentAttackState = AttackState.BeforeAttack;
+	private AttackState currentAttackState = AttackState.Rest;
 	
 	// do initialization here
 	void Start () {
@@ -115,8 +120,8 @@ public class Enemy : MonoBehaviour {
 	 * attack begins
 	 */
 	private void BeginAttack() {
-		if (currentAttackInterval <= beginAttackInterval) {
-			float normalInterval = 1 - (beginAttackInterval - currentAttackInterval) / beginAttackInterval;
+		if (currentAttackInterval > restAttackInterval && currentAttackInterval <= beginAttackInterval) {
+			float normalInterval = 1 - (beginAttackInterval - currentAttackInterval) / (beginAttackInterval - restAttackInterval);
 			transform.position = Vector3.Lerp(endAttackPosition, beginAttackPosition, normalInterval);
 		} else {
 			currentAttackState = AttackState.Attack;
@@ -146,16 +151,19 @@ public class Enemy : MonoBehaviour {
 			float normalInterval = 1 - (endAttackInterval - currentAttackInterval) / (endAttackInterval - attackInterval);
 			transform.position = Vector3.Lerp(attackPosition, endAttackPosition, normalInterval);
 		} else {
+			currentAttackInterval = 0.0f;
 			currentAttackState = AttackState.Rest;
 		}
 	}
 
+	/**
+	 * Control the interval between attacks
+	 */
 	private void RestAttack() {
-		if (currentAttackInterval > endAttackInterval && currentAttackInterval <= restAttackInterval) {
+		if (currentAttackInterval <= restAttackInterval) {
 			// 
 		} else {
 			currentAttackState = AttackState.BeforeAttack;
-			currentAttackInterval = 0.0f;
 		}
 	}
 }

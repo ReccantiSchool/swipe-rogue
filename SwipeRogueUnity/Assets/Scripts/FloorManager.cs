@@ -150,18 +150,30 @@ public class FloorManager : MonoBehaviour {
 	 */
 	public void MoveNorth() {
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.North]];
+		if (CurrentRoomHasEnemy()) {
+			currentRoom.transform.Find("Enemy(Clone)").GetComponent<Enemy>().shouldAttack = true;
+		}
 		Debug.Log(CurrentRoomHasEnemy());
 	}
 	public void MoveSouth() {
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.South]];
+		if (CurrentRoomHasEnemy()) {
+			currentRoom.transform.Find("Enemy(Clone)").GetComponent<Enemy>().shouldAttack = true;
+		}
 		Debug.Log(CurrentRoomHasEnemy());
 	}
 	public void MoveEast() {
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.East]];
+		if (CurrentRoomHasEnemy()) {
+			currentRoom.transform.Find("Enemy(Clone)").GetComponent<Enemy>().shouldAttack = true;
+		}
 		Debug.Log(CurrentRoomHasEnemy());
 	}
 	public void MoveWest() {
 		currentRoom = roomPrefabs[currentRoom.GetComponent<Room> ().roomclass.neighbors[Direction.West]];
+		if (CurrentRoomHasEnemy()) {
+			currentRoom.transform.Find("Enemy(Clone)").GetComponent<Enemy>().shouldAttack = true;
+		}
 		Debug.Log(CurrentRoomHasEnemy());
 	}
 
