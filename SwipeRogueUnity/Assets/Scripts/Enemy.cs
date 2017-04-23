@@ -31,6 +31,17 @@ public class Enemy : MonoBehaviour {
 	private Vector3 endAttackPosition;
 
 	private float currentAttackInterval;
+
+	// an enum to manage the different states
+	private enum AttackState {
+		BeforeAttack, 
+		Attack, 
+		EndAttack, 
+		Rest 
+	}
+
+	// the current attack state
+	private AttackState currentAttackState = AttackState.BeforeAttack;
 	
 	// do initialization here
 	void Start () {
@@ -53,20 +64,16 @@ public class Enemy : MonoBehaviour {
 		// handle attacking
 		if (shouldAttack) {
 			// begin attack if interval is less than beginAttackInterval
-			if (currentAttackInterval <= beginAttackInterval) {
+			if (currentAttackState == AttackState.BeforeAttack) {
 				BeginAttack();
 			}
 			// attack if interval is less than attack interval
-			else if (currentAttackInterval > beginAttackInterval && currentAttackInterval <= attackInterval) {
+			else if (currentAttackState == AttackState.Attack) {
 				Attack();
 			}
 			// end attack if interval is less than endAttackInterval
-			else if (currentAttackInterval > attackInterval && currentAttackInterval <= endAttackInterval) {
+			else if (currentAttackState == AttackState.EndAttack) {
 				EndAttack();
-			}
-			// otherwise reset the time
-			else {
-				currentAttackInterval = 0.0f;
 			}
 			currentAttackInterval += Time.deltaTime;
 		}
@@ -103,10 +110,12 @@ public class Enemy : MonoBehaviour {
 	 * attack begins
 	 */
 	private void BeginAttack() {
-		float normalInterval = 1 - (beginAttackInterval - currentAttackInterval) / beginAttackInterval;
-		transform.position = Vector3.Lerp(endAttackPosition, beginAttackPosition, normalInterval);
-		Debug.Log("Beginning Attack");
-		Debug.Log(transform.position);
+		if (currentAttackInterval <= beginAttackInterval) {
+			float normalInterval = 1 - (beginAttackInterval - currentAttackInterval) / beginAttackInterval;
+			transform.position = Vector3.Lerp(endAttackPosition, beginAttackPosition, normalInterval);
+		} else {
+			currentAttackState = AttackState.Attack;
+		}
 	}
 
 	/**
@@ -114,10 +123,12 @@ public class Enemy : MonoBehaviour {
 	 * during the attack
 	 */
 	private void Attack() {
-		float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
-		transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
-		Debug.Log("Attacking");
-		Debug.Log(transform.position);
+		if (currentAttackInterval > beginAttackInterval && currentAttackInterval <= attackInterval) {
+			float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
+			transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
+		} else {
+			currentAttackState = AttackState.EndAttack;
+		}
 	}
 
 	/**
@@ -125,7 +136,12 @@ public class Enemy : MonoBehaviour {
 	 * the attack happens
 	 */
 	private void EndAttack() {
-		float normalInterval = 1 - (endAttackInterval - currentAttackInterval) / (endAttackInterval - attackInterval);
-		transform.position = Vector3.Lerp(attackPosition, endAttackPosition, normalInterval);
+		if (currentAttackInterval > attackInterval && currentAttackInterval <= endAttackInterval) {
+			float normalInterval = 1 - (endAttackInterval - currentAttackInterval) / (endAttackInterval - attackInterval);
+			transform.position = Vector3.Lerp(attackPosition, endAttackPosition, normalInterval);
+		} else {
+			currentAttackState = AttackState.BeforeAttack;
+			currentAttackInterval = 0.0f;
+		}
 	}
 }
