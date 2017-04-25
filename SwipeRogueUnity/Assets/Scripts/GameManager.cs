@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
@@ -11,25 +12,25 @@ public class GameManager : MonoBehaviour {
 
 	public bool hasKey;
 
-	/**
+    /**
 	 * This function is called before the Start() method.
 	 * It creates a GameManager singleton and initializes
 	 * the floor
 	 */
-	void Awake () {
+    void Awake () {
 		instance = this;
 		hasKey = false;
-		// if (instance == null)
-		// 	instance = this;
-		// else if (instance != this)
-		// 	Destroy (gameObject);
+        // if (instance == null)
+        // 	instance = this;
+        // else if (instance != this)
+        // 	Destroy (gameObject);
 
-		// DontDestroyOnLoad (gameObject);
+        // DontDestroyOnLoad (gameObject);
 
-		// add our OnSceneLoaded to the list of methods
-		// that is called by the scenemanager on load
-		// SceneManager.sceneLoaded += OnSceneLoaded;
-	}
+        // add our OnSceneLoaded to the list of methods
+        // that is called by the scenemanager on load
+        // SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 	
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 		// initialize the floor

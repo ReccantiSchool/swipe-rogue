@@ -19,6 +19,7 @@ public class UIControl : MonoBehaviour {
         pauseButton = GameObject.Find("pauseButton");
         keyIcon = GameObject.Find("KeyIcon");
 
+
         EndHide();
         PauseHide();
         KeyHide();
