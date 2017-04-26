@@ -11,13 +11,12 @@ public class MovementManager : MonoBehaviour {
 	private bool shouldBeListening = true;
 
 	private FloorManager floorScript;
-
 	/**
 	 * Controls whether the user is currently able to move
 	 */
 	public bool canMove = true;
 
-	void Awake () {
+	void Start () {
 		floorScript = GetComponent<FloorManager>();
 	}
 
@@ -25,7 +24,8 @@ public class MovementManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// prevent movement if the current room has an enemy
-		canMove = !floorScript.CurrentRoomHasEnemy();
+		// canMove = !floorScript.CurrentRoomHasEnemy();
+		canMove = true;
 		Vector3 currentPosition = Camera.main.transform.position;
 		if (canMove) {
 			# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
@@ -34,6 +34,13 @@ public class MovementManager : MonoBehaviour {
 			moveTouch();
 			# endif
 		}
+		# if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEB_PLAYER
+		moveMouse();
+		#else
+		moveTouch();
+		#endif
+
+		// Debug.Log(floorScript.currentRoom);
 		Vector3 moveTo = Vector3.MoveTowards (currentPosition, floorScript.currentRoom.transform.position, Time.deltaTime * 100);
 		moveTo.z = -10f;
 		Camera.main.transform.position = moveTo;
