@@ -123,6 +123,13 @@ public class Floor : MonoBehaviour {
 
 
 		// instantiate all enemies
+		for(int i = 0; i < numEnemies; i++) {
+			int enemyIndex = Random.Range(0, itemRooms.Count);
+			GameObject enemyRoom = itemRooms[enemyIndex];
+			GameObject enemy = Instantiate(enemyPrefab, enemyRoom.transform.position, Quaternion.identity);
+			enemy.transform.parent = enemyRoom.transform;
+			itemRooms.RemoveAt(enemyIndex);
+		}
 	}
 
 	/**
