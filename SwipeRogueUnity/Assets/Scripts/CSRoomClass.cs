@@ -280,4 +280,18 @@ public enum Direction {
 	East,
 	West
 };
+public static class DirectionMethods {
+	public static Direction OppositeDirection(this Direction d) {
+		switch (d) {
+			case (Direction.North):
+				return Direction.South;
+			case (Direction.South):
+				return Direction.North;
+			case (Direction.East):
+				return Direction.West;
+			default:
+				return Direction.East;
+		}
+	}
+}
 
