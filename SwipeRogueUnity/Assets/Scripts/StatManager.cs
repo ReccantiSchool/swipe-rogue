@@ -45,7 +45,9 @@ public class StatManager : MonoBehaviour {
 	 * Destroy the current GameObject
 	 */
 	public void DestroySelf() {
-		Destroy(gameObject);
+		if (instance != null) {
+			Destroy(gameObject);
+		}
 	}
 
 	/**
