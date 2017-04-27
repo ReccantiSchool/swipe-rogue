@@ -8,10 +8,20 @@ public class FloorManager : MonoBehaviour {
 	public GameObject floorPrefab;
 
 	// a reference to the floor from the floorPrefab
-	private Floor floor;
+	[HideInInspector]
+	public Floor floor;
 
 	// the room that the player is currently in
-	public GameObject currentRoom { get; set; }
+	private GameObject _currentRoom;
+	public Room currentRoomScript { get; set; }
+	public GameObject currentRoom { 
+		get { return _currentRoom; } 
+		set { 
+			_currentRoom = value;
+			currentRoomScript = _currentRoom.GetComponent<Room>();
+		} 
+	}
+
 
 	void Start() {
 		GameObject floorObj = Instantiate(floorPrefab, Vector3.zero, Quaternion.identity);
@@ -35,32 +45,35 @@ public class FloorManager : MonoBehaviour {
 	 * specified rooms
 	 */
 	public bool CanMoveNorth() {
-		return currentRoom.GetComponent<Room>().NorthRoom != null;
+		return currentRoomScript.NorthRoom != null;
 	}
 	public bool CanMoveSouth() {
-		return currentRoom.GetComponent<Room>().SouthRoom != null;
+		return currentRoomScript.SouthRoom != null;
 	}
 	public bool CanMoveEast() {
-		return currentRoom.GetComponent<Room>().EastRoom != null;
+		return currentRoomScript.EastRoom != null;
 	}
 	public bool CanMoveWest() {
-		return currentRoom.GetComponent<Room>().WestRoom != null;
+		return currentRoomScript.WestRoom != null;
 	}
 
 	/**
 	 * Functions that update the current room
 	 */
 	public void MoveNorth() {
-		currentRoom = currentRoom.GetComponent<Room>().NorthRoom;
+		currentRoom = currentRoomScript.NorthRoom;
+		currentRoomScript.ActivateEnemy();
 	}
 	public void MoveSouth() {
-		currentRoom = currentRoom.GetComponent<Room>().SouthRoom;
+		currentRoom = currentRoomScript.SouthRoom;
+		currentRoomScript.ActivateEnemy();
 	}
 	public void MoveEast() {
-		currentRoom = currentRoom.GetComponent<Room>().EastRoom;
+		currentRoom = currentRoomScript.EastRoom;
+		currentRoomScript.ActivateEnemy();
 	}
 	public void MoveWest() {
-		currentRoom = currentRoom.GetComponent<Room>().WestRoom;
+		currentRoom = currentRoomScript.WestRoom;
+		currentRoomScript.ActivateEnemy();
 	}
-		
 }

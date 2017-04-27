@@ -58,7 +58,8 @@ MonoBehaviour:
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
   doorPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 1418533413191166, guid: c33fcb9c6e1f94508baafec1a4ea770a,
+    type: 2}
   isCustomFloor: 0
   totalRooms: 10
   numEnemies: 2
