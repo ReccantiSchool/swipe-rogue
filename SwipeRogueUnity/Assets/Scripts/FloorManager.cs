@@ -29,7 +29,7 @@ public class FloorManager : MonoBehaviour {
     public GameObject[] roomAssetList;
 
     // number or treasure chests
-    int totalChests;
+    public int totalChests;
 
     RoomClass treasureRoom;
     GameObject treasureRoomPrefab;
@@ -43,7 +43,8 @@ public class FloorManager : MonoBehaviour {
 	public GameObject currentRoom { get; set; }
 
 	void Awake() {
-        totalChests = totalRooms / 3;
+        usedRoomList = new List<RoomClass>();
+        totalChests = 2;
 		SetupFloor();
 	}
 
@@ -102,7 +103,7 @@ public class FloorManager : MonoBehaviour {
         // initialize a FloorExit Prefab in one of the furthest rooms from the
         // FloorKey (This is random right now)
         RoomClass exitRoom = rooms.GetFurthestRoomFromNode(keyRoom);
-        //usedRoomList.Add(exitRoom);
+        usedRoomList.Add(exitRoom);
         GameObject exitRoomPrefab = roomPrefabs[exitRoom];
 		GameObject floorExit = Instantiate(exitPrefab, exitRoomPrefab.transform.position, Quaternion.identity);
 		floorExit.transform.parent = roomPrefabs[exitRoom].transform;
@@ -128,8 +129,8 @@ public class FloorManager : MonoBehaviour {
 
             treasureRoomPrefab = roomPrefabs[treasureRoom];
             usedRoomList.Add(treasureRoom);
-            treasureSpawn = Instantiate(treasurePrefab, treasureRoomPrefab.transform.position, Quaternion.identity);
-            Debug.Log("Treasure Made");
+            treasureSpawn = Instantiate(treasurePrefab, treasureRoomPrefab.transform.position + new Vector3(0,-1.5f,-1), Quaternion.identity);
+            Debug.Log("Treasure Made   " + treasureRoomPrefab.transform.position);
         }
 
 	}
