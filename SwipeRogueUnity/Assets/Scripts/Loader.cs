@@ -12,7 +12,6 @@ public class Loader : MonoBehaviour {
 	 * whenever the level loads
 	 */
 	void Start () {
-
 		// instantiate the StatManager if it doesn't already exist
 		if (StatManager.instance == null) {
 			Instantiate(statManager);

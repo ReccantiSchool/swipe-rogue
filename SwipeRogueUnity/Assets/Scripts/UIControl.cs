@@ -96,6 +96,8 @@ public class UIControl : MonoBehaviour {
             Time.timeScale = 1;
             PauseHide();
         }
+        StatManager.instance.DestroySelf();
+        Debug.Log("Destroyed StatManager");
         SceneManager.LoadSceneAsync(lvl);
     }
 
