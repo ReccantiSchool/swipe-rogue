@@ -487,7 +487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasKey: 0
-  score: 0
 --- !u!114 &1269664952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,12 +505,14 @@ MonoBehaviour:
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
   exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
+  treasurePrefab: {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a,
+    type: 2}
   roomAssetList:
-  - {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a, type: 2}
   - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
-  - {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a, type: 2}
   - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
-  - {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
 --- !u!114 &1269664953
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,14 +22,28 @@ public class FloorManager : MonoBehaviour {
 	// the exit prefab that will be rendered in a single room
 	public GameObject exitPrefab;
 
+    // the treasure prefab that will be rendered in as many rooms as totalChest
+    public GameObject treasurePrefab;
+
     // List holding art assets to be randomly added to rooms
     public GameObject[] roomAssetList;
+
+    // number or treasure chests
+    int totalChests;
+
+    RoomClass treasureRoom;
+    GameObject treasureRoomPrefab;
+    GameObject treasureSpawn;
+
+    // List holding used rooms
+    List<RoomClass> usedRoomList;
 
     private RoomGraph rooms;
 	private Dictionary<RoomClass, GameObject> roomPrefabs;
 	public GameObject currentRoom { get; set; }
 
 	void Awake() {
+        totalChests = totalRooms / 3;
 		SetupFloor();
 	}
 
@@ -72,8 +86,9 @@ public class FloorManager : MonoBehaviour {
 
 		// initialize a FloorKey Prefab in a random room
 		RoomClass keyRoom = rooms.GetRandomRoom();
-		GameObject keyRoomPrefab = roomPrefabs[keyRoom];
-		GameObject floorKey = Instantiate(keyPrefab, keyRoomPrefab.transform.position, Quaternion.identity);
+        usedRoomList.Add(keyRoom);
+        GameObject keyRoomPrefab = roomPrefabs[keyRoom];
+        GameObject floorKey = Instantiate(keyPrefab, keyRoomPrefab.transform.position, Quaternion.identity);
 		floorKey.transform.parent = roomPrefabs[keyRoom].transform;
 
         // initialize every art asset in the list to a random room (currently set to place it in a random location in the room)
@@ -87,12 +102,36 @@ public class FloorManager : MonoBehaviour {
         // initialize a FloorExit Prefab in one of the furthest rooms from the
         // FloorKey (This is random right now)
         RoomClass exitRoom = rooms.GetFurthestRoomFromNode(keyRoom);
-		GameObject exitRoomPrefab = roomPrefabs[exitRoom];
+        //usedRoomList.Add(exitRoom);
+        GameObject exitRoomPrefab = roomPrefabs[exitRoom];
 		GameObject floorExit = Instantiate(exitPrefab, exitRoomPrefab.transform.position, Quaternion.identity);
 		floorExit.transform.parent = roomPrefabs[exitRoom].transform;
 
 		// set the current room to the first room that was created
 		currentRoom = roomPrefabs[rooms.rooms[0]];
+
+
+        for(int i =0; i < totalChests; i++)
+        {
+            treasureRoom = rooms.GetRandomRoom();
+            
+
+            for (int p = 0; p < usedRoomList.Count; p++)
+            {
+                if(treasureRoom == usedRoomList[p])
+                {
+                    treasureRoom = rooms.GetRandomRoom();
+                    treasureRoomPrefab = roomPrefabs[treasureRoom];
+                    p -= p - 1;
+                }
+            }
+
+            treasureRoomPrefab = roomPrefabs[treasureRoom];
+            usedRoomList.Add(treasureRoom);
+            treasureSpawn = Instantiate(treasurePrefab, treasureRoomPrefab.transform.position, Quaternion.identity);
+            Debug.Log("Treasure Made");
+        }
+
 	}
 
 //	/**
