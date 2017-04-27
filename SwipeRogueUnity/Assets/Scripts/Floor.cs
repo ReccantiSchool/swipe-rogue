@@ -126,10 +126,15 @@ public class Floor : MonoBehaviour {
 		GameObject door = Instantiate(doorPrefab, doorRoom.transform.position, Quaternion.identity);
 		door.transform.parent = doorRoom.transform;
 		itemRooms.RemoveAt(doorIndex);
-
-
+		
 		// instantiate all enemies
-<<<<<<< HEAD
+		for(int i = 0; i < numEnemies; i++) {
+			int enemyIndex = Random.Range(0, itemRooms.Count);
+			GameObject enemyRoom = itemRooms[enemyIndex];
+			GameObject enemy = Instantiate(enemyPrefab, enemyRoom.transform.position, Quaternion.identity);
+			enemy.transform.parent = enemyRoom.transform;
+			itemRooms.RemoveAt(enemyIndex);
+		}
 
         // instantiate all treasure chests
         for (int i = 0; i < numTreasureChests; i++)
@@ -140,15 +145,6 @@ public class Floor : MonoBehaviour {
             chest.transform.parent = chestRoom.transform;
             itemRooms.RemoveAt(chestIndex);
         }
-=======
-		for(int i = 0; i < numEnemies; i++) {
-			int enemyIndex = Random.Range(0, itemRooms.Count);
-			GameObject enemyRoom = itemRooms[enemyIndex];
-			GameObject enemy = Instantiate(enemyPrefab, enemyRoom.transform.position, Quaternion.identity);
-			enemy.transform.parent = enemyRoom.transform;
-			itemRooms.RemoveAt(enemyIndex);
-		}
->>>>>>> feature-enemy
 	}
 
 	/**
