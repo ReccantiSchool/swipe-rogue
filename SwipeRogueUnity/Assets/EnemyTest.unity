@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 1027958257}
   - component: {fileID: 1027958256}
   - component: {fileID: 1027958258}
+  - component: {fileID: 1027958259}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -234,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 1464801710647372, guid: e4a71dc23d5014493abed86c7f8453a7,
     type: 2}
+  floor: {fileID: 0}
 --- !u!114 &1027958258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +248,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasKey: 0
+--- !u!114 &1027958259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1027958254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1459cab497fa4097b05cadc967c5f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLevel: 1
+  currentFloor: 1
+  maxHP: 10
+  hp: 10
+  strength: 1
+  experienceToNextLevel: 1

@@ -36,6 +36,7 @@ public class FloorManager : MonoBehaviour {
 	public void SetupFloor () {   
 		GameObject initialRoom;
 		if (floor.rooms.TryGetValue(Vector2.zero, out initialRoom)) {
+			Debug.Log(initialRoom);
 			currentRoom = initialRoom;
 		}
 	}

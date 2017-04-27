@@ -52,9 +52,7 @@ public class Enemy : MonoBehaviour {
 	// do initialization here
 	void Start () {
 		initHealth = hp;
-		// render = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
-		// GameObject EnemyGUI = GameObject.Find("healthFront");
 		healthBar = transform.Find("EnemyGUI/HealthFront").GetComponent<Image>();
 		currentAttackInterval = 0.0f;
 
@@ -62,8 +60,6 @@ public class Enemy : MonoBehaviour {
 		beginAttackPosition = transform.position + new Vector3(0, 1, 0);
 		attackPosition = transform.position + new Vector3(0, -1, 0);
 		endAttackPosition = transform.position;
-
-		Debug.Log(Vector3.Distance(beginAttackPosition, attackPosition));
 	}
 
 	void Update () {
@@ -106,11 +102,11 @@ public class Enemy : MonoBehaviour {
 		animator.SetTrigger("enemyHit");
 
 		// decrease HP and destroy enemy if it reaches zero
-		hp--;
+		hp -= StatManager.instance.strength;
 		float healthPercent = (float)hp / initHealth;
 		healthBar.fillAmount = healthPercent;
-		Debug.Log(healthBar.fillAmount);
-		if (hp == 0) {
+		if (hp <= 0) {
+			StatManager.instance.GiveExperience(1);
 			Destroy(gameObject);
 		}
 	}
@@ -137,7 +133,8 @@ public class Enemy : MonoBehaviour {
 			float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
 			transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
 		} else {
-			Debug.Log("Attack!"); // replace with actual attack effects
+			StatManager.instance.hp--;
+			Debug.Log(StatManager.instance.hp);
 			currentAttackState = AttackState.EndAttack;
 		}
 	}
