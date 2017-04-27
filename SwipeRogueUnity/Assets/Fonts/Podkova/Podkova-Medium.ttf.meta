@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 9ede26e3f38724fcf84d649f4c3024c9
+timeCreated: 1493180889
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Podkova
+  fontNames:
+  - Podkova
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9d68e202e28614acdb893f021ced67b9, type: 3}
+  - {fileID: 12800000, guid: 3b5c8ef42624847138e309626ce8acee, type: 3}
+  - {fileID: 12800000, guid: 507e2c252198e4cafa49181d0824464c, type: 3}
+  - {fileID: 12800000, guid: 986d0b7d4de2e4f70a406873ca883a90, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
