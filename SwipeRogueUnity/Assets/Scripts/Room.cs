@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Room : MonoBehaviour {
 
-    public RoomClass roomclass;
-
+    // references to the neighbors of the room
     public GameObject NorthRoom;
     public GameObject SouthRoom;
     public GameObject EastRoom;
     public GameObject WestRoom;
 
+    // renderers for the doors of the room
     private Renderer northDoor;
     private Renderer southDoor;
     private Renderer eastDoor;
@@ -52,6 +52,28 @@ public class Room : MonoBehaviour {
         southDoor.enabled = (SouthRoom == null) ? false : true;
         eastDoor.enabled = (EastRoom == null) ? false : true;
         westDoor.enabled = (WestRoom == null) ? false : true;
+    }
+
+    /**
+     * Determines if the current room has an enemy in it
+     */
+    public bool HasEnemy() {
+        if (transform.Find("Enemy") != null || transform.Find("Enemy(Clone)") != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Activate an enemy if it exists
+     */
+    public void ActivateEnemy() {
+        if (transform.Find("Enemy") != null) {
+            transform.Find("Enemy").GetComponent<Enemy>().shouldAttack = true;
+        } else if (transform.Find("Enemy(Clone)") != null) {
+            transform.Find("Enemy(Clone)").GetComponent<Enemy>().shouldAttack = true;
+        }
     }
 
 }

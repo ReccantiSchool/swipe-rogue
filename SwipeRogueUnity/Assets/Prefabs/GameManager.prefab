@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1464613855652258}
+  m_RootGameObject: {fileID: 1605526217500416}
   m_IsPrefabParent: 1
---- !u!1 &1464613855652258
+--- !u!1 &1605526217500416
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4036593394228930}
-  - component: {fileID: 114519689989340650}
-  - component: {fileID: 114756190472935370}
-  - component: {fileID: 114362627967257016}
+  - component: {fileID: 4296748777116650}
+  - component: {fileID: 114226896064963376}
+  - component: {fileID: 114393133486649652}
+  - component: {fileID: 114306823563933602}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29,12 +29,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4036593394228930
+--- !u!4 &4296748777116650
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464613855652258}
+  m_GameObject: {fileID: 1605526217500416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.09445555, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -42,12 +42,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114362627967257016
+--- !u!114 &114226896064963376
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464613855652258}
+  m_GameObject: {fileID: 1605526217500416}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e7a10408ea9f40d19a2adf2794b3de0, type: 3}
@@ -55,38 +55,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
-  totalRooms: 10
-  roomPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d, type: 2}
-  keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
-  exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
-  roomAssetList:
-  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
-  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
-  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
-  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
-  - {fileID: 1084869133744182, guid: fe35a583034304c4a80c4aaa5d38c302, type: 2}
+  totalRooms: 15
   floorPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
     type: 2}
---- !u!114 &114519689989340650
+  keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
+  exitPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
+--- !u!114 &114306823563933602
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464613855652258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580c14e952693481682b70836ea21e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114756190472935370
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464613855652258}
+  m_GameObject: {fileID: 1605526217500416}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b76f54f2e6ec44a8f9ff78ed039555b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hasKey: 0
+--- !u!114 &114393133486649652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605526217500416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580c14e952693481682b70836ea21e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

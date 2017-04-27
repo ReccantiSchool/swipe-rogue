@@ -9,6 +9,7 @@ public class FloorExit : MonoBehaviour {
 		if (!GameManager.instance.hasKey) {
 			Debug.Log("You need to find the key first!");
 		} else {
+			StatManager.instance.currentFloor++;
 			SceneManager.LoadScene("Main");
 			Debug.Log("Got the floor key!");
 		}

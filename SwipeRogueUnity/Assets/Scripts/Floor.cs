@@ -129,6 +129,7 @@ public class Floor : MonoBehaviour {
 
 
 		// instantiate all enemies
+<<<<<<< HEAD
 
         // instantiate all treasure chests
         for (int i = 0; i < numTreasureChests; i++)
@@ -139,6 +140,15 @@ public class Floor : MonoBehaviour {
             chest.transform.parent = chestRoom.transform;
             itemRooms.RemoveAt(chestIndex);
         }
+=======
+		for(int i = 0; i < numEnemies; i++) {
+			int enemyIndex = Random.Range(0, itemRooms.Count);
+			GameObject enemyRoom = itemRooms[enemyIndex];
+			GameObject enemy = Instantiate(enemyPrefab, enemyRoom.transform.position, Quaternion.identity);
+			enemy.transform.parent = enemyRoom.transform;
+			itemRooms.RemoveAt(enemyIndex);
+		}
+>>>>>>> feature-enemy
 	}
 
 	/**

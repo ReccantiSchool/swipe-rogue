@@ -111,12 +111,14 @@ public class RoomClass {
 public class RoomGraph {
 
 	public List<RoomClass> rooms { get; private set; }
+	public List<RoomClass> freeRooms { get; private set; }
 	
 	/**
 	 * Initialize the RoomGraph
 	 */
 	public RoomGraph() {
 		rooms = new List<RoomClass>();
+		freeRooms = new List<RoomClass>();
 	}
 
 	/**
@@ -126,6 +128,7 @@ public class RoomGraph {
 // initialize the list of rooms with a single parent room
         rooms = new List<RoomClass> ();
 		rooms.Add(new RoomClass(0, null, startX, startY));  // ###################### initializing first room with overloaded method
+		freeRooms.Add(new RoomClass(0, null, startX, startY));
 
         // randomly add 10 connected rooms to the floor. Is increased by one when a room overlaps so there will be (10) rooms
         for (int i = 1; i < totalRooms; i++) {
@@ -196,6 +199,7 @@ public class RoomGraph {
 
                 // add the new room to the list so we can search again
                 rooms.Add(newRoom);
+				freeRooms.Add(newRoom);
             }
 		}
 	}
@@ -205,9 +209,10 @@ public class RoomGraph {
 	 * rooms array
 	 */
 	public RoomClass GetRandomRoom() {
-		int randomIndex = Random.Range(0, this.rooms.Count);
-		Debug.Log(randomIndex);
-		return rooms[randomIndex];
+		int randomIndex = Random.Range(0, this.freeRooms.Count);
+		RoomClass room = freeRooms[randomIndex];
+		freeRooms.Remove(room);
+		return room;
 	}
 
 	/**
