@@ -59,6 +59,9 @@ MonoBehaviour:
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
   doorPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
   enemyPrefab: {fileID: 0}
+  treasureChestPrefab: {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a,
+    type: 2}
   isCustomFloor: 0
   totalRooms: 10
   numEnemies: 2
+  numTreasureChests: 2

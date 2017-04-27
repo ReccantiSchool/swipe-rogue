@@ -7,8 +7,11 @@ public class UIControl : MonoBehaviour {
 
     GameObject[] endObjects;
     GameObject[] pausedObjects;
-    GameObject pauseButton;
+    GameObject gameTimerFill;
+    GameObject pauseTimerFill;
     GameObject keyIcon;
+    GameObject Score;
+    GameObject endRestart;
 
     bool theEnd = false;
 
@@ -16,9 +19,11 @@ public class UIControl : MonoBehaviour {
 	void Start () {
         pausedObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         endObjects = GameObject.FindGameObjectsWithTag("ShowOnEnd");
-        pauseButton = GameObject.Find("pauseButton");
+        gameTimerFill = GameObject.Find("gameTimerFill");
+        pauseTimerFill = GameObject.Find("pauseTimerFill");
         keyIcon = GameObject.Find("KeyIcon");
-
+        Score = GameObject.Find("ScoreCount");
+        endRestart = GameObject.Find("endRestart");
 
         EndHide();
         PauseHide();
@@ -60,6 +65,8 @@ public class UIControl : MonoBehaviour {
         {
             j.SetActive(true);
         }
+        pauseTimerFill.SetActive(true);
+        gameTimerFill.SetActive(false);
     }
 
     public void PauseHide()
@@ -69,7 +76,9 @@ public class UIControl : MonoBehaviour {
         {
             j.SetActive(false);
         }
-        // Debug.Log(this.pausedObjects.Length);
+
+        gameTimerFill.SetActive(true);
+        pauseTimerFill.SetActive(false);
     }
 
 
@@ -79,7 +88,10 @@ public class UIControl : MonoBehaviour {
         {
             j.SetActive(true);
         }
-        pauseButton.SetActive(false);
+        pauseTimerFill.SetActive(false);
+        gameTimerFill.SetActive(false);
+        KeyHide();
+        Score.transform.position = endRestart.transform.position + new Vector3(0, 250, 0);
     }
     public void EndHide()
     {
@@ -87,6 +99,7 @@ public class UIControl : MonoBehaviour {
         {
             j.SetActive(false);
         }
+        //Score.transform.position = new Vector3(-396,225,-1);
     }
 
     public void KeyShow()
