@@ -254,7 +254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1375516514061116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ffa07ee26554fd478d159b663053310, type: 3}
+  m_Script: {fileID: 11500000, guid: 920817389c0fdf649a3d05c4c5fc54f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NorthRoom: {fileID: 0}
@@ -327,7 +327,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1623955441
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93e2f68369eca48b4923ec4758b29cb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e6cafc74747f496f86f0973cf894569, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
