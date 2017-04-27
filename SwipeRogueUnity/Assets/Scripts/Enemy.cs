@@ -6,12 +6,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
 	// the hit points of the enemy
-	public int hp = 10;
+	public int baseHP = 10;
+
+	// the base strength of the enemy
+	public int baseStrength = 0;
+
+	// the computed HP. The takes the base hp and scales it according to the current floor level
+	public int computedHP;
 
 	// the initial hitpoints for the enemy, it will be set to the hp property on Start
 	private int initHealth = 10;
 
-	// private Renderer render;
+	// the computed strength, scaled according to the floor level
+	public int computedStrength;
 
 	// a reference to the enemy's animator
 	private Animator animator;
@@ -51,12 +58,20 @@ public class Enemy : MonoBehaviour {
 	
 	// do initialization here
 	void Start () {
-		initHealth = hp;
+		
+		// calculate the HP
+		computedHP = baseHP + Fibonacci(StatManager.instance.currentFloor);
+		initHealth = computedHP;
+
+		// calculate the strength
+		computedStrength = baseStrength + StatManager.instance.currentFloor;
+
+		// get access to the components that need to be animated
 		animator = GetComponent<Animator>();
 		healthBar = transform.Find("EnemyGUI/HealthFront").GetComponent<Image>();
-		currentAttackInterval = 0.0f;
 
-		// set the attack positions
+		// set the attack positions and interval
+		currentAttackInterval = 0.0f;
 		beginAttackPosition = transform.position + new Vector3(0, 1, 0);
 		attackPosition = transform.position + new Vector3(0, -1, 0);
 		endAttackPosition = transform.position;
@@ -102,10 +117,10 @@ public class Enemy : MonoBehaviour {
 		animator.SetTrigger("enemyHit");
 
 		// decrease HP and destroy enemy if it reaches zero
-		hp -= StatManager.instance.strength;
-		float healthPercent = (float)hp / initHealth;
+		computedHP -= StatManager.instance.strength;
+		float healthPercent = (float)computedHP / initHealth;
 		healthBar.fillAmount = healthPercent;
-		if (hp <= 0) {
+		if (computedHP <= 0) {
 			StatManager.instance.GiveExperience(1);
 			Destroy(gameObject);
 		}
@@ -133,7 +148,7 @@ public class Enemy : MonoBehaviour {
 			float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
 			transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
 		} else {
-			StatManager.instance.hp--;
+			StatManager.instance.hp -= computedStrength;
 			Debug.Log(StatManager.instance.hp);
 			currentAttackState = AttackState.EndAttack;
 		}
@@ -162,5 +177,20 @@ public class Enemy : MonoBehaviour {
 		} else {
 			currentAttackState = AttackState.BeforeAttack;
 		}
+	}
+
+
+	/**
+	 * an iterative fibonacci number generator
+	 */
+	private int Fibonacci(int startingNumber) {
+		int x = 0;
+		int y = 1;
+		for (int i = 0; i < startingNumber; i++) {
+			int temp = x;
+			x = y;
+			y = temp + y;
+		}
+		return y;
 	}
 }
