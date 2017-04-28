@@ -10,6 +10,11 @@ public class Room : MonoBehaviour {
     public GameObject EastRoom;
     public GameObject WestRoom;
 
+    // references to different room assets
+    public List<GameObject> roomAssets;
+    public int minNumberOfAssets = 0;
+    public int maxNumberOfAssets = 3;
+
     // renderers for the doors of the room
     private Renderer northDoor;
     private Renderer southDoor;
@@ -22,6 +27,9 @@ public class Room : MonoBehaviour {
         southDoor = transform.Find("SouthDoor").GetComponent<Renderer>();
         eastDoor = transform.Find("EastDoor").GetComponent<Renderer>();
         westDoor = transform.Find("WestDoor").GetComponent<Renderer>();
+
+        // place assets
+        PlaceAssets();
     }
 
     /**
@@ -73,6 +81,34 @@ public class Room : MonoBehaviour {
             transform.Find("Enemy").GetComponent<Enemy>().shouldAttack = true;
         } else if (transform.Find("Enemy(Clone)") != null) {
             transform.Find("Enemy(Clone)").GetComponent<Enemy>().shouldAttack = true;
+        }
+    }
+
+    /**
+     * Place a few assets randomly in the room
+     */
+    private void PlaceAssets() {
+
+        // don't place assets if there are no assets in the list
+        if (roomAssets.Count > 0) {
+
+            // randomly decide on placing between 0 and 3 assets
+            int numAssets = Random.Range(minNumberOfAssets, maxNumberOfAssets);
+            for (int i = 0; i < numAssets; i++) {
+                
+                // fetch a random asset from the list and place it at a random location
+                GameObject roomAssetPrefab = roomAssets[Random.Range(0, roomAssets.Count)];
+                Vector3 assetPosition = transform.position + new Vector3(
+                    Random.Range(-3, 3),
+                    Random.Range(-3, 3),
+                    0
+                );
+                GameObject roomAsset = Instantiate(
+                    roomAssetPrefab, 
+                    assetPosition, 
+                    Quaternion.identity);
+                roomAsset.transform.parent = transform;
+            }
         }
     }
 

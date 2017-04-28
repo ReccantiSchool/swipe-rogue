@@ -1761,6 +1761,12 @@ MonoBehaviour:
   SouthRoom: {fileID: 0}
   EastRoom: {fileID: 0}
   WestRoom: {fileID: 0}
+  roomAssets:
+  - {fileID: 1437077839208750, guid: 3f8876db8acff48fc8bb1980ce40870d, type: 2}
+  - {fileID: 1497273682943836, guid: cd438eee7b1c2464e8d6f4b81c41deaf, type: 2}
+  - {fileID: 1632560011555542, guid: 5abbb95d726554ce692fa3c9577709e0, type: 2}
+  minNumberOfAssets: 0
+  maxNumberOfAssets: 3
 --- !u!114 &114099051316010666
 MonoBehaviour:
   m_ObjectHideFlags: 1
