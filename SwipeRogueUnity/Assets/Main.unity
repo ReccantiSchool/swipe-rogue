@@ -386,6 +386,11 @@ Prefab:
       propertyPath: m_Name
       value: Main UI
       objectReference: {fileID: 0}
+    - target: {fileID: 114897959140909902, guid: ed49c4792cc004e1f9cb5f0dc9644afd,
+        type: 2}
+      propertyPath: m_ScaleFactor
+      value: 0.84
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed49c4792cc004e1f9cb5f0dc9644afd, type: 2}
   m_IsPrefabParent: 0
