@@ -54,11 +54,12 @@ MonoBehaviour:
   roomsStore:
     keys: []
     values: []
-  defaultRoomPrefab: {fileID: 1375516514061116, guid: b69d7fb9a1fbb461ebca448c3196d18d,
+  defaultRoomPrefab: {fileID: 1530582052163876, guid: 6af48ee1a0f9644c9b7dc70d28fcbce8,
     type: 2}
   keyPrefab: {fileID: 1054078384201438, guid: c69666bdd4ede440fa42035a531dbbf2, type: 2}
   doorPrefab: {fileID: 1820018878790038, guid: c7194ca340589487bbaef729ccb406fd, type: 2}
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 1418533413191166, guid: c33fcb9c6e1f94508baafec1a4ea770a,
+    type: 2}
   treasureChestPrefab: {fileID: 1084869133744182, guid: 5d1ccaac91ea3c74291ded50c791401a,
     type: 2}
   isCustomFloor: 0

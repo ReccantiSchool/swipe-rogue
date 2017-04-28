@@ -229,7 +229,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2032104546}
+      - m_Target: {fileID: 2032104547}
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1.15
+  m_ScaleFactor: 1.36
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -1194,6 +1194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2032104545}
   - component: {fileID: 2032104546}
+  - component: {fileID: 2032104547}
   m_Layer: 5
   m_Name: MenuUI
   m_TagString: Untagged
@@ -1231,9 +1232,20 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2032104544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aca44b245f8a9d04487c2f8d6203eab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2032104547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2032104544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bca91496d4e34741bb3dfee3a6fa6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2075419474

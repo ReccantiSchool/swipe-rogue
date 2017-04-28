@@ -7,6 +7,9 @@ public class StatManager : MonoBehaviour {
 	// a reference to this singleton
 	public static StatManager instance = null;
 
+	// the player's score. This can be increased by collecting gold
+	public int score = 0;
+
 	// the current level of the player
 	public int playerLevel = 1;
 

@@ -8,7 +8,7 @@ public class Treasure : MonoBehaviour {
     GameObject ScoreCount;
     ScoreControl score;
     
-
+    public int pointsPerChest = 100;
 	// Use this for initialization
 	void Start () {
         ScoreCount = GameObject.Find("ScoreCount");
@@ -17,9 +17,10 @@ public class Treasure : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        score.score += 100;
+        StatManager.instance.score += pointsPerChest;
+        score.score = StatManager.instance.score;
         Debug.Log("Found a Treasure Chest!");
-        this.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
 }

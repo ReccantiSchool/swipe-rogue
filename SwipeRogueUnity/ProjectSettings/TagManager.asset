@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Walls
+    uniqueID: 3717053737
+    locked: 0
   - name: Doors
     uniqueID: 960613537
     locked: 0
