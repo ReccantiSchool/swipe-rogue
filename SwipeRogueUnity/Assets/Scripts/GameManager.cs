@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    GameObject ScoreCount;
+    ScoreControl score;
+
 	public static GameManager instance = null;
 	[HideInInspector]
 	// public FloorManager floorScript;
@@ -20,6 +23,11 @@ public class GameManager : MonoBehaviour {
     void Awake () {
 		instance = this;
 		hasKey = false;
+
+        ScoreCount = GameObject.Find("ScoreCount");
+        score = ScoreCount.GetComponent<ScoreControl>();
+
+		score.score = StatManager.instance.score;
         // if (instance == null)
         // 	instance = this;
         // else if (instance != this)
