@@ -8,6 +8,7 @@ TagManager:
   - ShowOnEnd
   - ShowOnShow
   - Pause
+  - HP
   layers:
   - Default
   - TransparentFX
