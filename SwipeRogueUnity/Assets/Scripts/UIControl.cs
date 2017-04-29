@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UIControl : MonoBehaviour {
@@ -12,6 +13,11 @@ public class UIControl : MonoBehaviour {
     GameObject keyIcon;
     GameObject Score;
     GameObject endRestart;
+    GameObject[] health;
+    GameObject floorNmb;
+    Text currentFloor;
+    StatManager statManager;
+    GameObject stats;
 
     bool theEnd = false;
 
@@ -24,6 +30,11 @@ public class UIControl : MonoBehaviour {
         keyIcon = GameObject.Find("KeyIcon");
         Score = GameObject.Find("ScoreCount");
         endRestart = GameObject.Find("endRestart");
+        health = GameObject.FindGameObjectsWithTag("HP");
+        floorNmb = GameObject.Find("FloorTracker");
+        currentFloor = floorNmb.GetComponent<Text>();
+        stats = GameObject.Find("Main UI");
+        statManager = stats.GetComponent<StatManager>();
 
         EndHide();
         PauseHide();
@@ -38,6 +49,9 @@ public class UIControl : MonoBehaviour {
         {
             KeyShow();
         }
+
+        currentFloor.text = "Floor: " + statManager.currentFloor;
+
 
 	}
 
@@ -88,10 +102,17 @@ public class UIControl : MonoBehaviour {
         {
             j.SetActive(true);
         }
+        foreach (GameObject p in health)
+        {
+            p.SetActive(false);
+        }
+
         pauseTimerFill.SetActive(false);
         gameTimerFill.SetActive(false);
         KeyHide();
         Score.transform.position = endRestart.transform.position + new Vector3(0, 250, 0);
+        currentFloor.transform.position = Score.transform.position - new Vector3(0, 50, 0);
+
     }
     public void EndHide()
     {
@@ -100,6 +121,7 @@ public class UIControl : MonoBehaviour {
             j.SetActive(false);
         }
         //Score.transform.position = new Vector3(-396,225,-1);
+
     }
 
     public void KeyShow()
