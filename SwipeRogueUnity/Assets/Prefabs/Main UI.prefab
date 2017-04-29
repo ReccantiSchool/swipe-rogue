@@ -984,7 +984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 1.5
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -1581,6 +1581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1459cab497fa4097b05cadc967c5f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   playerLevel: 1
   currentFloor: 1
   maxHP: 10
