@@ -8,7 +8,6 @@ TagManager:
   - ShowOnEnd
   - ShowOnShow
   - Pause
-  - HP
   layers:
   - Default
   - TransparentFX
@@ -45,6 +44,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Walls
+    uniqueID: 3717053737
     locked: 0
   - name: Doors
     uniqueID: 960613537

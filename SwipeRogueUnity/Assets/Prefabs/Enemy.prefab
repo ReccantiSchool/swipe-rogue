@@ -138,7 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c12df9888760431c9a721648e839f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 20
+  baseHP: 20
+  baseStrength: 0
+  computedHP: 0
+  computedStrength: 0
   shouldAttack: 0
   restAttackInterval: 1.5
   beginAttackInterval: 2.15
