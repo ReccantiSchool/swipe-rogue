@@ -16,7 +16,6 @@ public class UIControl : MonoBehaviour {
     GameObject[] health;
     GameObject floorNmb;
     Text currentFloor;
-    StatManager statManager;
     GameObject stats;
 
     bool theEnd = false;
@@ -34,7 +33,6 @@ public class UIControl : MonoBehaviour {
         floorNmb = GameObject.Find("FloorTracker");
         currentFloor = floorNmb.GetComponent<Text>();
         stats = GameObject.Find("Main UI");
-        statManager = stats.GetComponent<StatManager>();
 
         EndHide();
         PauseHide();
@@ -50,7 +48,7 @@ public class UIControl : MonoBehaviour {
             KeyShow();
         }
 
-        currentFloor.text = "Floor: " + statManager.currentFloor;
+        currentFloor.text = "Floor: " + StatManager.instance.currentFloor;
 
 
 	}

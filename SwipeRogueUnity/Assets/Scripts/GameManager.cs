@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	 * It creates a GameManager singleton and initializes
 	 * the floor
 	 */
-    void Awake () {
+    void Start () {
 		instance = this;
 		hasKey = false;
 
