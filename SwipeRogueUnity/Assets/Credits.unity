@@ -135,6 +135,21 @@ Prefab:
       propertyPath: m_ScaleFactor
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114200593888771168, guid: cce2bb4fadf2845d082d510b9ce7eac6,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200593888771168, guid: cce2bb4fadf2845d082d510b9ce7eac6,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200593888771168, guid: cce2bb4fadf2845d082d510b9ce7eac6,
+        type: 2}
+      propertyPath: m_ReferenceResolution.y
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114808189331821646, guid: cce2bb4fadf2845d082d510b9ce7eac6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cce2bb4fadf2845d082d510b9ce7eac6, type: 2}

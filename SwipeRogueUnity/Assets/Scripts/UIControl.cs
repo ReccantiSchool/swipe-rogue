@@ -38,6 +38,9 @@ public class UIControl : MonoBehaviour {
         PauseHide();
         KeyHide();
 
+        // resize canvas to fit the screen
+        // var canvas = transform.Find("GameCanvas").GetComponent<CanvasScaler>();
+        // canvas.matchWidthOrHeight = 0.0f;
     }
 	
 	// Update is called once per frame
@@ -47,10 +50,7 @@ public class UIControl : MonoBehaviour {
         {
             KeyShow();
         }
-
         currentFloor.text = "Floor: " + StatManager.instance.currentFloor;
-
-
 	}
 
     public void PauseOn()
