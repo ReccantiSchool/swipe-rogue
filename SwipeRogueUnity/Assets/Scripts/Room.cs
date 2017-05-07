@@ -28,6 +28,22 @@ public class Room : MonoBehaviour {
         eastDoor = transform.Find("EastDoor").GetComponent<Renderer>();
         westDoor = transform.Find("WestDoor").GetComponent<Renderer>();
 
+        // scale the room to fit the camera
+        var renderer = GetComponent<Renderer>();
+        var width    = renderer.bounds.size.x;
+        var height   = renderer.bounds.size.y;
+
+        var worldScreenHeight = Camera.main.orthographicSize * 2.0;
+        var worldScreenWidth  = worldScreenHeight / Screen.height * Screen.width;
+
+        float scaleWidth = (float)worldScreenWidth / width;
+        float scaleHeight = (float)worldScreenHeight / height;
+
+        Debug.Log(scaleWidth);
+        Debug.Log(scaleHeight);
+
+        transform.localScale = new Vector3(scaleWidth, scaleWidth, 1.0f);
+
         // place assets
         PlaceAssets();
     }
