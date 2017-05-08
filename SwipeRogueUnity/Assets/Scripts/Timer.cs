@@ -38,6 +38,7 @@ public class Timer : MonoBehaviour {
         if (image.fillAmount == 0)
         {
             timerGo = false;
+            StatManager.instance.KillPlayer();
             uiControl.EndShow();
         }
 
