@@ -11,10 +11,12 @@ public class MovementManager : MonoBehaviour {
 	private bool shouldBeListening = true;
 
 	private FloorManager floorScript;
+
 	/**
 	 * Controls whether the user is currently able to move
 	 */
 	public bool canMove = true;
+
 
 	void Start () {
 		floorScript = GetComponent<FloorManager>();
@@ -23,8 +25,10 @@ public class MovementManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
 		// prevent movement if the current room has an enemy
-		canMove = !(floorScript.currentRoomScript.HasEnemy());
+		// canMove = !(floorScript.currentRoomScript.HasEnemy());
+		canMove = ((!floorScript.currentRoomScript.HasEnemy()) && StatManager.instance.isAlive);
 
 		// change the current position
 		Vector3 currentPosition = Camera.main.transform.position;

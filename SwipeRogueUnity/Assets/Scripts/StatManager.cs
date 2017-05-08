@@ -28,6 +28,9 @@ public class StatManager : MonoBehaviour {
 	// the experience needed to get to the next level
 	public int experienceToNextLevel = 1;
 
+	// determines whether or not the player is still alive
+	public bool isAlive = true;
+
 	// Use this for initialization
 	void Awake () {
 		// initialize singleton instance
@@ -62,6 +65,14 @@ public class StatManager : MonoBehaviour {
 		if (experienceToNextLevel <= 0) {
 			LevelUp();
 		}
+	}
+
+	/**
+	 * Move to an end state. Disables the player's movement
+	 * and display the end screen.
+	 */
+	public void KillPlayer() {
+		this.isAlive = false;
 	}
 
 	/**

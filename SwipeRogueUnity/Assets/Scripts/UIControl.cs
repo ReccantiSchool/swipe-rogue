@@ -43,11 +43,19 @@ public class UIControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // display the key notification if the player has found it
         if (GameManager.instance.hasKey)
         {
             KeyShow();
         }
+
+        // display the current floor
         currentFloor.text = "Floor: " + StatManager.instance.currentFloor;
+
+        // display the end screen if the player has been killed
+        if (!StatManager.instance.isAlive) {
+            EndShow();
+        }
 	}
 
     public void PauseOn()

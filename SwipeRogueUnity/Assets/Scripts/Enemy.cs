@@ -26,12 +26,10 @@ public class Enemy : MonoBehaviour {
 	// a reference to the health bar GUI image
 	private Image healthBar;
 
+	private GameObject GameManager;
+
 	// attack intervals
 	public bool shouldAttack = false;
-	// public float restAttackInterval = 2.0f;
-	// public float beginAttackInterval = 0.5f;
-	// public float attackInterval = 1.0f;
-	// public float endAttackInterval = 1.5f;
 
 	public float restAttackInterval = 0.5f;
 	public float beginAttackInterval = 1.0f;
@@ -75,6 +73,11 @@ public class Enemy : MonoBehaviour {
 		beginAttackPosition = transform.position + new Vector3(0, 1, 0);
 		attackPosition = transform.position + new Vector3(0, -1, 0);
 		endAttackPosition = transform.position;
+
+		// get a reference to the Game Manager
+		GameManager = GameObject.Find("GameManager");
+
+		Debug.Log(GameManager.GetComponent<MovementManager>().canMove);
 	}
 
 	void Update () {
@@ -121,7 +124,10 @@ public class Enemy : MonoBehaviour {
 		float healthPercent = (float)computedHP / initHealth;
 		healthBar.fillAmount = healthPercent;
 		if (computedHP <= 0) {
+			
+			// give experience to the player
 			StatManager.instance.GiveExperience(1);
+
 			Destroy(gameObject);
 		}
 	}
@@ -148,7 +154,13 @@ public class Enemy : MonoBehaviour {
 			float normalInterval = 1 - (attackInterval - currentAttackInterval) / (attackInterval - beginAttackInterval);
 			transform.position = Vector3.Lerp(beginAttackPosition, attackPosition, normalInterval);
 		} else {
+
+			// deal damage and kill player if HP is less than zero
 			StatManager.instance.hp -= computedStrength;
+			if (StatManager.instance.hp <= 0) {
+				StatManager.instance.KillPlayer();
+			}
+
 			Debug.Log(StatManager.instance.hp);
 			currentAttackState = AttackState.EndAttack;
 		}
