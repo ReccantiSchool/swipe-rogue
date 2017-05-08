@@ -187,6 +187,21 @@ Prefab:
       propertyPath: m_ReferenceResolution.y
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 224653911314835206, guid: cce2bb4fadf2845d082d510b9ce7eac6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 224653911314835206, guid: cce2bb4fadf2845d082d510b9ce7eac6,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -280
+      objectReference: {fileID: 0}
+    - target: {fileID: 114880220410011786, guid: cce2bb4fadf2845d082d510b9ce7eac6,
+        type: 2}
+      propertyPath: startTime
+      value: 140
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114808189331821646, guid: cce2bb4fadf2845d082d510b9ce7eac6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cce2bb4fadf2845d082d510b9ce7eac6, type: 2}
